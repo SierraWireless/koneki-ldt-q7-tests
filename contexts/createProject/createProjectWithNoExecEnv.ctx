@@ -1,0 +1,22 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Context-Type: com.xored.q7.ecl.context
+Element-Name: createProjectWithNoExecEnv
+Element-Type: context
+Element-Version: 2.0
+Id: _fAysYDflEeKGwZ-lPsgu4A
+Save-Time: 11/26/12 5:27 PM
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
+Content-Type: text/ecl
+Entry-Name: .ecl.context
+
+get-menu "File/New/Other..." | click
+get-window New | get-tree | select "Lua/Lua Project" | double-click
+with [get-window "New Lua project"] {
+    get-editbox -after [get-label "Project name:"] | set-text myproject
+    get-group "Targeted Execution Environment" | get-button "Create project without Execution Environment" | click
+    get-button Finish | click
+}
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--
