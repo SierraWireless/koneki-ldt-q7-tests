@@ -1,0 +1,128 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _u4EL4MmsEeGLNoFQBj_CGw,_POZ54MnVEeGLNoFQBj_CGw
+Element-Name: 1_checkSyntaxColour_reservedWords
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _5LwqAc8iEeGqt76k24hgqg
+Save-Time: 9/24/12 9:55 AM
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+*** Context ***
++ Clear Workspace
++ A project is created in the workspace without Execution Environment
+
+*** Actions ***
+- Open the main.lua file
+- Enter reserved words "if then else for in do repeat until while not true false"
+
+*** Assertions ***
+# Check syntaxic coloration
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+/*********************
+*	Created by: Simon Gaestel
+*	Creation date: 07/16/2012
+*	Last update : 07/17/2012
+*********************/
+
+// Open the main.lua file and enter reserved words
+with [get-view "Script Explorer" | get-tree] {
+    select "Project_noExecEnv/src/main.lua" | double-click
+}
+
+
+with [get-editor main | get-text-viewer] {
+    set-caret-pos 2 1
+    type-text "if a == 1 then"
+    key-type Enter
+    type-text "else"
+    key-type Enter
+    type-text "for a in {0..1} do"
+    key-type Enter
+    type-text "repeat {"
+    key-type Enter
+    key-type Right -times 2
+    type-text "until a == 1"
+    key-type Enter
+    type-text "while not (a==1)"
+    key-type Enter
+    type-text "a = true"
+    key-type Enter
+    type-text "a = false"
+    key-type Enter
+}
+
+// Check syntaxic coloration for reserved words
+with [get-editor main | get-editbox] {
+// Check local
+    get-property "styles.text" -index 0 | equals local | verify-true
+    get-property "styles.fontStyle" -index 0 | equals bold | verify-true
+    get-property "styles.foregroundColor" -index 0 | equals "#7F0055" | verify-true
+// Check function
+    get-property "styles.text" -index 2 | equals function | verify-true
+    get-property "styles.fontStyle" -index 2 | equals bold | verify-true
+    get-property "styles.foregroundColor" -index 2 | equals "#7F0055" | verify-true
+// Check if
+    get-property "styles.text" -index 6 | equals if | verify-true
+    get-property "styles.fontStyle" -index 6 | equals bold | verify-true
+    get-property "styles.foregroundColor" -index 6 | equals "#7F0055" | verify-true
+// Check then
+    get-property "styles.text" -index 14 | equals then | verify-true
+    get-property "styles.fontStyle" -index 14 | equals bold | verify-true
+    get-property "styles.foregroundColor" -index 14 | equals "#7F0055" | verify-true
+// Check else
+    get-property "styles.text" -index 16 | equals else | verify-true
+    get-property "styles.fontStyle" -index 16 | equals bold | verify-true
+    get-property "styles.foregroundColor" -index 16 | equals "#7F0055" | verify-true
+// Check for
+    get-property "styles.text" -index 18 | equals for | verify-true
+    get-property "styles.fontStyle" -index 18 | equals bold | verify-true
+    get-property "styles.foregroundColor" -index 18 | equals "#7F0055" | verify-true
+// Check in
+    get-property "styles.text" -index 22 | equals in | verify-true
+    get-property "styles.fontStyle" -index 22 | equals bold | verify-true
+    get-property "styles.foregroundColor" -index 22 | equals "#7F0055" | verify-true
+// Check do
+    get-property "styles.text" -index 28 | equals do | verify-true
+    get-property "styles.fontStyle" -index 28 | equals bold | verify-true
+    get-property "styles.foregroundColor" -index 28 | equals "#7F0055" | verify-true
+// Check repeat
+    get-property "styles.text" -index 30 | equals repeat | verify-true
+    get-property "styles.fontStyle" -index 30 | equals bold | verify-true
+    get-property "styles.foregroundColor" -index 30 | equals "#7F0055" | verify-true
+// Check until
+    get-property "styles.text" -index 36 | equals until | verify-true
+    get-property "styles.fontStyle" -index 36 | equals bold | verify-true
+    get-property "styles.foregroundColor" -index 36 | equals "#7F0055" | verify-true
+// Check while
+    get-property "styles.text" -index 44 | equals while | verify-true
+    get-property "styles.fontStyle" -index 44 | equals bold | verify-true
+    get-property "styles.foregroundColor" -index 44 | equals "#7F0055" | verify-true
+// Check not
+    get-property "styles.text" -index 46 | equals not | verify-true
+    get-property "styles.fontStyle" -index 46 | equals bold | verify-true
+    get-property "styles.foregroundColor" -index 46 | equals "#7F0055" | verify-true
+// Check true
+    get-property "styles.text" -index 56 | equals true | verify-true
+    get-property "styles.fontStyle" -index 56 | equals bold | verify-true
+    get-property "styles.foregroundColor" -index 56 | equals "#7F0055" | verify-true
+// Check false
+    get-property "styles.text" -index 62 | equals false | verify-true
+    get-property "styles.fontStyle" -index 62 | equals bold | verify-true
+    get-property "styles.foregroundColor" -index 62 | equals "#7F0055" | verify-true
+// Check end
+    get-property "styles.text" -index 64 | equals end | verify-true
+    get-property "styles.fontStyle" -index 64 | equals bold | verify-true
+    get-property "styles.foregroundColor" -index 64 | equals "#7F0055" | verify-true
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

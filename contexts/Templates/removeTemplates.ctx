@@ -1,0 +1,32 @@
+--- Q7 testcase ---
+Q7-vendor: www.xored.com/q7
+Format-Version: 1.0
+Element-Name: removeTemplates
+Context-Type: com.xored.q7.ecl.context
+Element-Type: context
+Element-Version: 2.0
+Save-Time: 8/28/12 1:55 PM
+Id: _STqwQNTOEeGKjezHpf7UXA
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
+Entry-Name: .ecl.context
+Content-Type: text/ecl
+
+
+get-menu "Window/Preferences" | click
+with [get-window Preferences] {
+    get-tree | select "Lua/Editor/Templates"
+    get-table | get-items | foreach {
+    	if [get-property caption -raw | eq "newTemplate2"] {
+    		select-item
+    		get-window Preferences | get-button Remove | click
+    	}
+    	if [get-property caption -raw | eq "newTemplate"] {
+    		select-item
+    		get-window Preferences | get-button Remove | click
+    	}
+    }
+    get-button OK | click
+}
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--

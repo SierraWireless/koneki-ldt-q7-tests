@@ -1,0 +1,55 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _u4EL4MmsEeGLNoFQBj_CGw,_POZ54MnVEeGLNoFQBj_CGw
+Element-Name: 1_goToDefinition_function
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _Q7QLkNVtEeGFMoSoUTDWjQ
+Save-Time: 10/1/12 2:17 PM
+Tags: BUG-390231
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+*** Context ***
++ Clear Workspace
++ A Project is created in the workspace without Execution Environment
+ 
+*** Actions ***
+- Open the main.lua file
+- Click on the call of the main function
+- Right-Click -> Open Declaration
+ 
+*** Assertions ***
+# The declaration of the main function is selected
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+/*********************
+*	Created by: Simon Gaestel
+*	Creation date: 07/24/2012
+*********************/
+
+// Open the main.lua file
+with [get-view "Script Explorer" | get-tree] {
+    select "Project_noExecEnv/src/main.lua" | double-click
+}
+
+// Check OpenDeclaration on function selects its declaration
+with [get-editor main | get-text-viewer] {
+    set-caret-pos 4 2
+    get-menu "Open Declaration" | click
+}
+with [get-editor main | get-editbox] {
+    get-property "getSelectionText()" | equals "main" | verify-true
+    get-property "getSelectionCount()" | equals 4 | verify-true
+    get-property "getSelectionBackground()" | equals "#F07746" | verify-true
+    get-property "getSelectionForeground()" | equals "#FFFFFF" | verify-true
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

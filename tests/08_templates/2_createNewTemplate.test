@@ -1,0 +1,121 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _u4EL4MmsEeGLNoFQBj_CGw,_POZ54MnVEeGLNoFQBj_CGw,_STqwQNTOEeGKjezHpf7UXA
+Element-Name: 2_createNewTemplate
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _Q4IFgNSxEeGKjezHpf7UXA
+Save-Time: 9/24/12 9:55 AM
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+*** Context ***
++ Clear Workspace
++ A Project is created in the workspace without Execution Environment
+ 
+*** Actions ***
+- Window -> Preferences
+- Lua -> Editor -> Templates -> New...
+- Fill all the fields to create a new template -> OK -> OK
+- Open the main.lua file
+- Start typing the name of the created template and use content-assist to complete it
+ 
+*** Assertions ***
+# The created template is used to complete the typed text in the text-editor
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+/*********************
+*	Created by: Simon Gaestel
+*	Creation date: 07/23/2012
+*********************/
+
+// Go to Preferences and create a new template
+get-menu "Window/Preferences" | click
+with [get-window Preferences] {
+    get-tree | select "Lua/Editor/Templates"
+    get-button "New..." | click
+    with [get-window "New Template"] {
+        get-editbox -after [get-label "Name:"] | set-text newTemplate
+        get-editbox -after [get-label "Description:"] | set-text newTemplateDesc
+        get-text-viewer | type-text "function new ("
+        with [get-text-viewer] {
+            type-text "${var1}, ${var2}, ${var3}, "
+        }
+        get-button "Insert Variable..." | click
+        get-window -from "CompletionProposalPopup.createProposalSelector()" | get-table | select "language - Current script language" 
+            | click -default
+        with [get-text-viewer] {
+            type-text ")"
+            key-type Enter
+        }
+        get-text-viewer | type-text "${var1} = "
+        get-button "Insert Variable..." | click
+        get-window -from "CompletionProposalPopup.createProposalSelector()" | get-table 
+            | select "module_name - Module name" | click -default
+        with [get-text-viewer] {
+            key-type Enter
+            type-text "${var2} = "
+        }
+        get-button "Insert Variable..." | click
+        get-window -from "CompletionProposalPopup.createProposalSelector()" | get-table 
+            | select "module_short_name - Module short name" | click -default
+        with [get-text-viewer] {
+        	key-type Enter
+        	type-text "${var3} = "
+        }
+        get-button "Insert Variable..." | click
+        get-window -from "CompletionProposalPopup.createProposalSelector()" | get-table | select "file - Current file name" 
+            | click -default
+        with [get-text-viewer] {
+            key-type Enter
+            type-text end
+            key-type Enter
+            type-text "${cursor}"
+        }        
+        get-editbox -after [get-label "Pattern:"] | get-property text | equals "function new (${var1}, ${var2}, ${var3}, ${language})\n"
+		    + "${var1} = ${module_name}\n"
+		    + "${var2} = ${module_short_name}\n"
+		    + "${var3} = ${file}\n"
+		    + "end\n"
+		    + "${cursor}" | verify-true
+        get-button OK | click
+    }
+    get-button OK | click
+}
+
+// Open the main.lua file
+with [get-view "Script Explorer" | get-tree] {
+    select "Project_noExecEnv/src/main.lua" | double-click
+}
+
+// Check the created template can be used through the content-assist for auto-completion
+with [get-editor main | get-text-viewer] {
+    set-caret-pos 2 1
+    type-text newT
+    key-type "M1+SPACE"
+    key-type Enter
+    type-text aze
+    key-type Tab
+    type-text rty
+    key-type Tab
+    type-text uio
+    key-type Tab
+}
+get-editor main | get-editbox | get-property text | equals "local function main()\n"
+    + "function new (aze, rty, uio, Lua)\n"
+    + "aze = main\n"
+    + "rty = main\n"
+    + "uio = main.lua\n"
+    + "end\n\n"
+    + "end\n"
+    + "main()" | verify-true
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

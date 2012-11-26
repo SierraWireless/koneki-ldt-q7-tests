@@ -1,0 +1,77 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _u4EL4MmsEeGLNoFQBj_CGw,_kv7fcMnGEeGLNoFQBj_CGw
+Element-Name: 8_add_removeExecEnv_alreadyEmbedded
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _C1pgkQvYEeKveeRn0ExUGg
+Save-Time: 10/2/12 4:08 PM
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+*** Context ***
++ Clear Workspace
++ No Execution Environment is installed in LDT
+
+*** Actions ***
+- Window -> Preferences
+- Lua -> Execution Environment -> Add...
+- Select an Execution Environment to add, already embedded in LDT -> Open -> Yes -> Ok
+# Check 1
+- Select an the installed Execution Environment to remove -> Remove
+# Check 2
+
+*** Assertions ***
+# Check 1 : The Execution Environment is installed
+# Check 2 : The Execution Environment is uninstalled, but still embedded in LDT
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+/*********************
+*	Created by: Simon Gaestel
+*	Creation date: 07/09/2012
+*	Last Update: 07/16/2012
+*********************/
+
+// Add execution environment
+get-menu "Window/Preferences" | click
+get-window Preferences | get-tree | select "Lua/Execution Environments"
+
+//set-dialog-result File with EE path
+set-dialog-result File "platform:/resource/../q7-external-files/EE/lua-5.1.zip"
+
+with [get-window Preferences] {
+    get-button "Add..." | click
+    get-window "Add Execution Environment Support" | get-button Yes | click
+    get-button OK | click
+}
+
+// Check execution environment
+get-menu "Window/Preferences" | click
+get-window Preferences | get-tree | select "Lua/Execution Environments"
+with [get-window Preferences | get-tree -after [get-label "Supported execution environments:"]] {
+    get-property itemCount | equals 1 | verify-true
+    get-item "lua-5.1" | get-property caption | equals "lua-5.1" | verify-true
+}
+
+// Remove execution environment
+with [get-window Preferences] {
+	get-tree -after [get-label "Supported execution environments:"] | select "lua-5.1"
+	get-button Remove | click
+
+// Check execution environment
+	with [get-tree -after [get-label "Supported execution environments:"]] {
+		get-property itemCount | equals 1 | verify-true
+		get-item "lua-5.1 (Embedded)" | get-property caption | equals "lua-5.1 (Embedded)" | verify-true
+	}
+}
+
+get-window Preferences | get-button OK | click
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

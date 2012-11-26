@@ -1,0 +1,19 @@
+--- Q7 testcase ---
+Q7-vendor: www.xored.com/q7
+Format-Version: 1.0
+Element-Name: 12_formatter
+Element-Type: testsuite
+Element-Version: 2.0
+Save-Time: 7/30/12 3:21 PM
+Id: _dEOXQNpJEeGuXpzNfzVp7Q
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
+Entry-Name: testcase-items
+Content-Type: text/testcase
+
+_owf1UNpCEeGwoqdL076Qyw	// kind: 'test' name: '3_shiftRight_Left' path: '12_formatter/3_shiftRight_Left.test'
+_ffFbsNo_EeGwoqdL076Qyw	// kind: 'test' name: '1_formatCode_usingRightClickMenu' path: '12_formatter/1_formatCode_usingRightClickMenu.test'
+_TVTCkNpDEeGwoqdL076Qyw	// kind: 'test' name: '4_correctIndentation' path: '12_formatter/4_correctIndentation.test'
+_oQSgsNpBEeGwoqdL076Qyw	// kind: 'test' name: '2_formatCode_usingShortcutKey' path: '12_formatter/2_formatCode_usingShortcutKey.test'
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--

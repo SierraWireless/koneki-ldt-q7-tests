@@ -1,0 +1,64 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _u4EL4MmsEeGLNoFQBj_CGw,_POZ54MnVEeGLNoFQBj_CGw
+Element-Name: 1_checkErrorCode_onFirstError
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _Og1DgdScEeGKjezHpf7UXA
+Save-Time: 10/1/12 2:22 PM
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+*** Context ***
++ Clear Workspace
++ A Project is created in the workspace without Execution Environment
+ 
+*** Actions ***
+- Open the main.lua file
+- Enter some code with a syntax error
+# Check 1
+- Hover the error marker in the left ruler
+# Check 2
+ 
+*** Assertions ***
+# Check 1 : An error marker is displayed in the left ruler
+# Check 2 : The error message is displayed
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+/*********************
+*	Created by: Simon Gaestel
+*	Creation date: 07/23/2012
+*********************/
+
+// Open the main.lua file
+with [get-view "Script Explorer" | get-tree] {
+    select "Project_noExecEnv/src/main.lua" | double-click
+}
+// Type some code with syntax errors
+with [get-editor main | get-text-viewer] {
+    set-caret-pos 5 1
+    type-text a
+    key-type Enter
+    type-text e
+}
+
+// Check the displayed error by hovering the error marker in the left ruler
+get-editor main | get-left-ruler | hover-ruler -line 5
+wait 200
+
+with [get-window -from "Information Window" | get-editbox] {
+	get-property text | matches "line\s+5,\s+char\s+1:\s+This\s+expression\s+\(\"a\"\)\s+is\s+an\s+identifier;\s+a\s+statement\s+was\s+expected,\s+"
+		+"and\s+only\s+function\s+and\s+method\s+call\s+expressions\s+can\s+be\s+used\s+as\s+statements\s+>>>\s+a\s+>>>\s+\^" | verify-true
+    get-property backgroundColor | equals "#FFFFE1" | verify-true
+    get-property foregroundColor | equals "#000000" | verify-true
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

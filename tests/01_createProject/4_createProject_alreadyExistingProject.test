@@ -1,0 +1,61 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _u4EL4MmsEeGLNoFQBj_CGw,_kv7fcMnGEeGLNoFQBj_CGw,_POZ54MnVEeGLNoFQBj_CGw
+Element-Name: 4_createProject_alreadyExistingProject
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _OXw4cMpnEeG5YN1oc9uimw
+Save-Time: 9/24/12 9:55 AM
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+*** Context ***
++ Clear Workspace
++ A Project is created in the workspace without Execution Environment
+
+*** Actions ***
+- New project in workspace with same name than existing one
+- Without Execution Environment
+# Check 1
+# Check 2
+- Click on Cancel
+
+*** Assertions ***
+# Check 1 : An error is displayed, as the project already exist
+# Check 2 : Buttons "Next" and "Finish" are disabled
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+/*********************
+*	Created by: Simon Gaestel
+*	Creation date: 07/10/2012
+*********************/
+
+// Create the project
+get-view "Script Explorer" | get-tree | select "Project_noExecEnv" | get-menu "New/Lua Project" | click
+get-window "New Lua project" | get-editbox -after [get-label "Project name:"] | set-text "Project_noExecEnv"
+with [get-window "New Lua project"] {
+
+// Check an error message is displayed
+    get-editbox -after [get-label "Create a Lua project."] | get-property text 
+        | equals "A project with this name already exists." | verify-true
+        
+// Check the buttons Finish and Next are disabled
+    with [get-button Finish] {
+        get-property enablement | equals false | verify-true
+        get-property caption | equals "&Finish" | verify-true
+    }
+    with [get-button "Next >"] {
+        get-property enablement | equals false | verify-true
+        get-property caption | equals "&Next >" | verify-true
+    }
+    get-button "Cancel" | click
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

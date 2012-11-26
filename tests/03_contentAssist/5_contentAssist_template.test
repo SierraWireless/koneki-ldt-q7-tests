@@ -1,0 +1,71 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _u4EL4MmsEeGLNoFQBj_CGw,_POZ54MnVEeGLNoFQBj_CGw
+Element-Name: 5_contentAssist_template
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _afxyUMqXEeG5YN1oc9uimw
+Save-Time: 9/24/12 9:55 AM
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+*** Context ***
++ Clear Workspace
++ A Project is created in the workspace without Execution Environment
+
+*** Actions ***
+- Open the main.lua file
+- Start typing a known template (such as "if" condition)
+- Type CTRL+Space
+# Check 1
+- Fill the parameter and press Tab to switch to the next one
+# Check 2
+
+*** Assertions ***
+# Check 1 : The template is auto-completed and the cursor is set to the first parameter of the loop to be filled
+# Check 2 : The complete template has been filled
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+/*********************
+*	Created by: Simon Gaestel
+*	Creation date: 07/10/2012
+*********************/
+
+// Open main.lua file
+with [get-view "Script Explorer" | get-tree] {
+    select "Project_noExecEnv/src/main.lua" | double-click
+}
+
+// Define a new variable, re-use it with the content assist to auto-complete the variable
+with [get-editor main | get-text-viewer] {
+    set-caret-pos 1 22
+    key-type Enter -times 2
+    type-text "local variable"
+    key-type Enter -times 2
+    type-text if
+    key-type "M1+SPACE"
+    key-type Enter
+    type-text "variable == 1"
+    key-type Tab
+    type-text "print(\"Ok"
+    key-type Tab //-times 3
+    //type-text "variable=2"
+}
+
+// Check the template has been auto-completed    
+get-editor main | get-editbox | get-property text | equals "local function main()\n\n"
+    + "local variable\n\n"
+    + "if variable == 1 then\n"
+    + "\tprint(\"Ok\")\n"
+    + "end\n\n"
+    + "end\n"
+    + "main()" | verify-true
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

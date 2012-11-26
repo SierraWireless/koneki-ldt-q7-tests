@@ -1,0 +1,54 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _jFN40MnAEeGLNoFQBj_CGw
+Element-Name: 6_addExecEnvToLDT_alreadyLinked
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _tDs6IMqPEeG5YN1oc9uimw
+Save-Time: 9/24/12 9:55 AM
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+*** Context ***
++ Clear Workspace
++ An Execution Environment is linked to the LDT
+
+*** Actions ***
+- Window -> Preferences
+- Lua -> Execution Environment -> Add...
+- Select an Execution Environment to add -> Open -> Ok
+
+*** Assertions ***
+# An error message is displayed, as the Execution Environment is already installed in the LDT
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+/*********************
+*	Created by: Simon Gaestel
+*	Creation date: 07/10/2012
+*	Last update: 07/16/2012
+*********************/
+
+// Add execution environment
+get-menu "Window/Preferences" | click
+get-window Preferences | get-tree | select "Lua/Execution Environments"
+set-dialog-result File "platform:/resource/../q7-external-files/EE/gideros.zip"
+with [get-window Preferences] {
+    get-button "Add..." | click
+
+// Check an error is returned
+	with [get-window "Problem Occurred"] {
+		get-label "Execution environment is already installed." | get-property caption | equals "Execution environment is already installed." | verify-true
+		get-button OK | click
+	}
+	get-tree -after [get-label "Supported execution environments:"] | get-property itemCount | equals 2 | verify-true
+    get-button OK | click
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

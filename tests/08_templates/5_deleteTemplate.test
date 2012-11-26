@@ -1,0 +1,49 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _u4EL4MmsEeGLNoFQBj_CGw,_mSYdkMmuEeGLNoFQBj_CGw,_POZ54MnVEeGLNoFQBj_CGw,_STqwQNTOEeGKjezHpf7UXA,_y8oG0NTLEeGKjezHpf7UXA
+Element-Name: 5_deleteTemplate
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _gdpDANTLEeGKjezHpf7UXA
+Save-Time: 9/24/12 4:25 PM
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+*** Context ***
++ Clear Workspace
++ A Project is created in the workspace without Execution Environment
++ A template is created
+ 
+*** Actions ***
+- Window -> Preferences
+- Lua -> Editor -> Templates
+- Select the template to delete -> Remove
+ 
+*** Assertions ***
+# The template does not appear in the templates list anymore
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+/*********************
+*	Created by: Simon Gaestel
+*	Creation date: 07/23/2012
+*********************/
+
+// Remove the template and check only pre-loaded templates remain
+get-menu "Window/Preferences" | click
+with [get-window Preferences] {
+    get-tree | select "Lua/Editor/Templates"
+    get-table | select newTemplate
+    get-button Remove | click
+    get-table | get-property "getItemCount()" | equals 21 | verify-true
+    get-button OK | click
+}
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

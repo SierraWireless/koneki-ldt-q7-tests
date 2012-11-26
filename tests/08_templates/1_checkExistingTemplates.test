@@ -1,0 +1,272 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _u4EL4MmsEeGLNoFQBj_CGw,_POZ54MnVEeGLNoFQBj_CGw,_STqwQNTOEeGKjezHpf7UXA
+Element-Name: 1_checkExistingTemplates
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _TNJjgNSuEeGKjezHpf7UXA
+Save-Time: 9/24/12 9:55 AM
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+*** Context ***
++ Clear Workspace
++ A Project is created in the workspace without Execution Environment
+ 
+*** Actions ***
+- Window -> Preferences
+- Lua -> Editor -> Templates
+# Check 1
+- Open the main.lua file
+- Type the beginning of each template and use content-assist to auto-complete them
+# Check 2
+ 
+*** Assertions ***
+# Check 1 : The pre-loaded templates are present by default
+# Check 2 : All the pre-loaded templates can be auto-completed
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+/*********************
+*	Created by: Simon Gaestel
+*	Creation date: 07/23/2012
+*********************/
+
+// Open the Preferences and check the existing templates list in Lua/Edit/Templates
+get-menu "Window/Preferences" | click
+get-window Preferences | get-tree | select "Lua/Editor/Templates"
+with [get-window Preferences | get-table] {
+    get-property "getItemCount()" | equals 21 | verify-true
+    get-property "getItems().TableItem[0].getText()" | equals "@field" | verify-true
+    get-property "getItems().TableItem[1].getText()" | equals "@fieldinparent" | verify-true
+    get-property "getItems().TableItem[2].getText()" | equals "@function" | verify-true
+    get-property "getItems().TableItem[3].getText()" | equals "@module" | verify-true
+    get-property "getItems().TableItem[4].getText()" | equals "@param" | verify-true
+    get-property "getItems().TableItem[5].getText()" | equals "@return" | verify-true
+    get-property "getItems().TableItem[6].getText()" | equals "@type" | verify-true
+    get-property "getItems().TableItem[7].getText()" | equals for | verify-true
+    get-property "getItems().TableItem[8].getText()" | equals ford | verify-true
+    get-property "getItems().TableItem[9].getText()" | equals fori | verify-true
+    get-property "getItems().TableItem[10].getText()" | equals forn | verify-true
+    get-property "getItems().TableItem[11].getText()" | equals forp | verify-true
+    get-property "getItems().TableItem[12].getText()" | equals forr | verify-true
+    get-property "getItems().TableItem[13].getText()" | equals function | verify-true
+    get-property "getItems().TableItem[14].getText()" | equals if | verify-true
+    get-property "getItems().TableItem[15].getText()" | equals local | verify-true
+    get-property "getItems().TableItem[16].getText()" | equals loci | verify-true
+    get-property "getItems().TableItem[17].getText()" | equals pcall | verify-true
+    get-property "getItems().TableItem[18].getText()" | equals print | verify-true
+    get-property "getItems().TableItem[19].getText()" | equals repeat | verify-true
+    get-property "getItems().TableItem[20].getText()" | equals while | verify-true
+    get-item "@field" | get-property columns -index 0 | equals "@field" | verify-true
+    get-item "@field" | get-property columns -index 1 | equals LuaDocumentor | verify-true
+    get-item "@field" | get-property columns -index 2 | equals "field declaration" | verify-true
+    get-item "@field" | get-property columns -index 3 | equals on | verify-true
+    get-item "@fieldinparent" | get-property columns -index 0 | equals "@fieldinparent" | verify-true
+    get-item "@fieldinparent" | get-property columns -index 1 | equals LuaDocumentor | verify-true
+    get-item "@fieldinparent" | get-property columns -index 2 | equals "field declaration in parent type block" 
+        | verify-true
+    get-item "@fieldinparent" | get-property columns -index 3 | equals on | verify-true
+    get-item "@function" | get-property columns -index 0 | equals "@function" | verify-true
+    get-item "@function" | get-property columns -index 1 | equals LuaDocumentor | verify-true
+    get-item "@function" | get-property columns -index 2 | equals "function declaration" | verify-true
+    get-item "@function" | get-property columns -index 3 | equals on | verify-true
+    get-item "@module" | get-property columns -index 0 | equals "@module" | verify-true
+    get-item "@module" | get-property columns -index 1 | equals LuaDocumentor | verify-true
+    get-item "@module" | get-property columns -index 2 | equals "module declaration" | verify-true
+    get-item "@module" | get-property columns -index 3 | equals on | verify-true
+    get-item "@param" | get-property columns -index 0 | equals "@param" | verify-true
+    get-item "@param" | get-property columns -index 1 | equals LuaDocumentor | verify-true
+    get-item "@param" | get-property columns -index 2 | equals "parameter declaration" | verify-true
+    get-item "@param" | get-property columns -index 3 | equals on | verify-true
+    get-item "@return" | get-property columns -index 0 | equals "@return" | verify-true
+    get-item "@return" | get-property columns -index 1 | equals LuaDocumentor | verify-true
+    get-item "@return" | get-property columns -index 2 | equals "return type declaration" | verify-true
+    get-item "@return" | get-property columns -index 3 | equals on | verify-true
+    get-item "@type" | get-property columns -index 0 | equals "@type" | verify-true
+    get-item "@type" | get-property columns -index 1 | equals LuaDocumentor | verify-true
+    get-item "@type" | get-property columns -index 2 | equals "type declaration" | verify-true
+    get-item "@type" | get-property columns -index 3 | equals on | verify-true
+    get-item for | get-property columns -index 0 | equals for | verify-true
+    get-item for | get-property columns -index 1 | equals Lua | verify-true
+    get-item for | get-property columns -index 2 | equals "For On List" | verify-true
+    get-item for | get-property columns -index 3 | equals on | verify-true
+    get-item ford | get-property columns -index 0 | equals ford | verify-true
+    get-item ford | get-property columns -index 1 | equals Lua | verify-true
+    get-item ford | get-property columns -index 2 | equals "For On Dots" | verify-true
+    get-item ford | get-property columns -index 3 | equals on | verify-true
+    get-item fori | get-property columns -index 0 | equals fori | verify-true
+    get-item fori | get-property columns -index 1 | equals Lua | verify-true
+    get-item fori | get-property columns -index 2 | equals "For On Table Using Ipairs Function" | verify-true
+    get-item fori | get-property columns -index 3 | equals on | verify-true
+    get-item forn | get-property columns -index 0 | equals forn | verify-true
+    get-item forn | get-property columns -index 1 | equals Lua | verify-true
+    get-item forn | get-property columns -index 2 | equals "Numeric For Loop" | verify-true
+    get-item forn | get-property columns -index 3 | equals on | verify-true
+    get-item forp | get-property columns -index 0 | equals forp | verify-true
+    get-item forp | get-property columns -index 1 | equals Lua | verify-true
+    get-item forp | get-property columns -index 2 | equals "For On Table Using Pairs Function" | verify-true
+    get-item forp | get-property columns -index 3 | equals on | verify-true
+    get-item forr | get-property columns -index 0 | equals forr | verify-true
+    get-item forr | get-property columns -index 1 | equals Lua | verify-true
+    get-item forr | get-property columns -index 2 | equals "Numeric For Loop With Range" | verify-true
+    get-item forr | get-property columns -index 3 | equals on | verify-true
+    get-item function | get-property columns -index 0 | equals function | verify-true
+    get-item function | get-property columns -index 1 | equals Lua | verify-true
+    get-item function | get-property columns -index 2 | equals "Function Declaration" | verify-true
+    get-item function | get-property columns -index 3 | equals on | verify-true
+    get-item if | get-property columns -index 0 | equals if | verify-true
+    get-item if | get-property columns -index 1 | equals Lua | verify-true
+    get-item if | get-property columns -index 2 | equals "If Statement" | verify-true
+    get-item if | get-property columns -index 3 | equals on | verify-true
+    get-item local | get-property columns -index 0 | equals local | verify-true
+    get-item local | get-property columns -index 1 | equals Lua | verify-true
+    get-item local | get-property columns -index 2 | equals "Variable Declaration" | verify-true
+    get-item local | get-property columns -index 3 | equals on | verify-true
+    get-item loci | get-property columns -index 0 | equals loci | verify-true
+    get-item loci | get-property columns -index 1 | equals Lua | verify-true
+    get-item loci | get-property columns -index 2 | equals "Variable Declaration With Initialization" | verify-true
+    get-item loci | get-property columns -index 3 | equals on | verify-true
+    get-item pcall | get-property columns -index 0 | equals pcall | verify-true
+    get-item pcall | get-property columns -index 1 | equals Lua | verify-true
+    get-item pcall | get-property columns -index 2 | equals "Protected Function Call" | verify-true
+    get-item pcall | get-property columns -index 3 | equals on | verify-true
+    get-item print | get-property columns -index 0 | equals print | verify-true
+    get-item print | get-property columns -index 1 | equals Lua | verify-true
+    get-item print | get-property columns -index 2 | equals "Classic Print Function" | verify-true
+    get-item print | get-property columns -index 3 | equals on | verify-true
+    get-item repeat | get-property columns -index 0 | equals repeat | verify-true
+    get-item repeat | get-property columns -index 1 | equals Lua | verify-true
+    get-item repeat | get-property columns -index 2 | equals "Repeat Loop" | verify-true
+    get-item repeat | get-property columns -index 3 | equals on | verify-true
+    get-item while | get-property columns -index 0 | equals while | verify-true
+    get-item while | get-property columns -index 1 | equals Lua | verify-true
+    get-item while | get-property columns -index 2 | equals "While Loop" | verify-true
+    get-item while | get-property columns -index 3 | equals on | verify-true
+}
+get-window Preferences | get-button OK | click
+
+// Open the main.lua file
+with [get-view "Script Explorer" | get-tree] {
+    select "Project_noExecEnv/src/main.lua" | double-click
+}
+
+// Use content-assist to auto-complete all pre-loaded templates
+with [get-editor main | get-text-viewer] {
+    set-caret-pos 5 1
+    type-text for
+    key-type "M1+SPACE"
+    key-type Enter -times 2
+    key-type Down -times 2
+    key-type Enter
+    type-text ford
+    key-type "M1+SPACE"
+    key-type Enter -times 2
+    key-type Down
+    key-type Enter
+    type-text fori
+    key-type "M1+SPACE"
+    key-type Enter -times 2
+    key-type Down
+    key-type Enter
+    type-text forn
+    key-type "M1+SPACE"
+    key-type Enter -times 2
+    key-type Down
+    key-type Enter
+    type-text forp
+    key-type "M1+SPACE"
+    key-type Enter -times 2
+    key-type Down
+    key-type Enter
+    type-text forr
+    key-type "M1+SPACE"
+    key-type Enter -times 2
+    key-type Down
+    key-type Enter
+    type-text functio
+    key-type "M1+SPACE"
+    key-type Enter -times 2
+    key-type Down
+    key-type Enter
+    type-text if
+    key-type "M1+SPACE"
+    key-type Enter -times 2
+    key-type Down
+    key-type Enter
+    type-text loca
+    key-type "M1+SPACE"
+    key-type Enter -times 2
+    type-text loci
+    key-type "M1+SPACE"
+    key-type Enter -times 3
+    type-text pca
+    key-type "M1+SPACE"
+    key-type Enter -times 2
+    key-type Down
+    key-type Enter
+    type-text pri
+    key-type "M1+SPACE"
+    key-type Enter -times 2
+    type-text repe
+    key-type "M1+SPACE"
+    key-type Enter -times 2
+    key-type Down
+    key-type End
+    key-type Enter
+    type-text whi
+    key-type "M1+SPACE"
+    key-type Enter -times 2
+    key-type Down
+}
+
+// Check all pre-loaded templates can be auto-completed
+get-editor main | get-editbox | get-property text | equals "local function main()\n\n"
+    + "end\n"
+    + "main()\n"
+    + "for var in list do\n"
+    + "\t\n"
+    + "end\n"
+    + "for index=1,select(\"#\", ...) do\n"
+    + "\tlocal temp = select(index, ...)\n"
+    + "\t\n"
+    + "end\n"
+    + "for key, var in ipairs(table) do\n"
+    + "\t\n"
+    + "end\n"
+    + "for var=init, limit do\n"
+    + "\t\n"
+    + "end\n"
+    + "for key, var in pairs(table) do\n"
+    + "\t\n"
+    + "end\n"
+    + "for var=init, limit, range do\n"
+    + "\t\n"
+    + "end\n"
+    + "function name(parameters)\n"
+    + "\t\n"
+    + "end\n"
+    + "if exp then\n"
+    + "\t\n"
+    + "end\n"
+    + "local variable\n"
+    + "local variable = \n"
+    + "local status, result = pcall(functionNameOrBody, param)\n"
+    + "if not status then\n"
+    + "\t\n"
+    + "end\n"
+    + "print(\"string\")\n"
+    + "repeat\n"
+    + "\t\n"
+    + "until exp\n"
+    + "while exp do\n"
+    + "\t\n"
+    + "end" | verify-true
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

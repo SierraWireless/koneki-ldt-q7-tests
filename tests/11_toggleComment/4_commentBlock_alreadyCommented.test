@@ -1,0 +1,64 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _u4EL4MmsEeGLNoFQBj_CGw,_POZ54MnVEeGLNoFQBj_CGw
+Element-Name: 4_commentBlock_alreadyCommented
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _dJRFwNo9EeGwoqdL076Qyw
+Save-Time: 9/24/12 9:55 AM
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+*** Context ***
++ A project is created without Execution Environment
+
+*** Actions ***
+- Open the main.lua file
+- Select a block of code in the text editor
+- Go to menu Source -> Comment
+- Go to menu Source -> Comment
+
+*** Assertions ***
+# The selected comment is re-commented, adding the comment markers a second time
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+/*********************
+*	Created by: Simon Gaestel
+*	Creation date: 07/30/2012
+*********************/
+
+// Open the main.lua file
+with [get-view "Script Explorer" | get-tree] {
+    select "Project_noExecEnv/src/main.lua" | double-click
+}
+
+// Select the main function declaration and switch it to comment
+with [get-editor main | get-text-viewer] {
+    set-caret-pos 3 3
+    select-range 3 4 1 1
+}
+get-menu "Source/Comment" | click
+get-menu "Source/Comment" | click
+with [get-editor main | get-editbox] {
+    get-property text | equals "----local function main()\n"
+        + "----\n"
+        + "----end\n"
+        + "main()" | verify-true
+    get-property "styles.start" -index 0 | equals 0 | verify-true
+    get-property "styles.length" -index 0 | equals 39 | verify-true
+    get-property "styles.text" -index 0 | equals "----local function main()\n"
+        + "----\n"
+        + "----end\n" | verify-true
+    get-property "styles.fontStyle" -index 0 | equals normal | verify-true
+    get-property "styles.foregroundColor" -index 0 | equals "#3F5FBF" | verify-true
+}
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

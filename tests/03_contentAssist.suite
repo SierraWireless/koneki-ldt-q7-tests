@@ -1,0 +1,21 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Element-Name: 03_contentAssist
+Element-Type: testsuite
+Element-Version: 2.0
+Id: _lhHQgMnhEeGLNoFQBj_CGw
+Save-Time: 10/1/12 5:14 PM
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
+Content-Type: text/testcase
+Entry-Name: testcase-items
+
+_fx6kwMmvEeGLNoFQBj_CGw	// kind: 'test' name: '1_contentAssist_default' path: '03_contentAssist/1_contentAssist_default.test'
+_1lfFUMncEeGLNoFQBj_CGw	// kind: 'test' name: '2_contentAssist_ExecEnvNotAvailable' path: '03_contentAssist/2_contentAssist_ExecEnvNotAvailable.test'
+_JEy9sMndEeGLNoFQBj_CGw	// kind: 'test' name: '3_contentAssist_withExecEnv' path: '03_contentAssist/3_contentAssist_withExecEnv.test'
+_VvbwIMqUEeG5YN1oc9uimw	// kind: 'test' name: '4_contentAssist_existingVariable' path: '03_contentAssist/4_contentAssist_existingVariable.test'
+_afxyUMqXEeG5YN1oc9uimw	// kind: 'test' name: '5_contentAssist_template' path: '03_contentAssist/5_contentAssist_template.test'
+_P2CRcM9CEeGqt76k24hgqg	// kind: 'test' name: '6_contentAssist_withErrorInCode' path: '03_contentAssist/6_contentAssist_withErrorInCode.test'
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--

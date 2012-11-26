@@ -1,0 +1,71 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _u4EL4MmsEeGLNoFQBj_CGw,_POZ54MnVEeGLNoFQBj_CGw
+Element-Name: 1_checkLocal
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _hQk0gM8oEeGqt76k24hgqg
+Save-Time: 9/24/12 9:55 AM
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+*** Context ***
++ Clear Workspace
++ A project is created in the workspace without Execution Environment
+
+*** Actions ***
+- Open the main.lua file
+
+*** Assertions ***
+# Check semantic coloration for local variable / function
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+/*********************
+*	Created by: Simon Gaestel
+*	Creation date: 07/16/2012
+*********************/
+
+// Open the main.lua file
+with [get-view "Script Explorer" | get-tree] {
+    select "Project_noExecEnv/src/main.lua" | double-click
+}
+
+// Create a local variable / function
+with [get-editor main | get-text-viewer] {
+    set-caret-pos 3 4
+    key-type Enter
+    type-text "local var1"
+    key-type Enter
+    set-caret-pos 6 6
+    type-text "var1"
+    set-caret-pos 6 11
+    key-type Enter
+}
+
+// Check the format of local variable
+with [get-editor main | get-editbox] {
+    get-property "styles.text" -index 4 | equals "main" | verify-true
+    get-property "styles.fontStyle" -index 4 | equals normal | verify-true
+    get-property "styles.foregroundColor" -index 4 | equals "#676767" | verify-true
+    
+    get-property "styles.text" -index 11 | equals "var1" | verify-true
+    get-property "styles.fontStyle" -index 11 | equals normal | verify-true
+    get-property "styles.foregroundColor" -index 11 | equals "#676767" | verify-true
+    
+    get-property "styles.text" -index 13 | equals "main" | verify-true
+    get-property "styles.fontStyle" -index 13 | equals normal | verify-true
+    get-property "styles.foregroundColor" -index 13 | equals "#676767" | verify-true
+    
+    get-property "styles.text" -index 15 | equals "var1" | verify-true
+    get-property "styles.fontStyle" -index 15 | equals normal | verify-true
+    get-property "styles.foregroundColor" -index 15 | equals "#676767" | verify-true
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

@@ -1,0 +1,59 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _u4EL4MmsEeGLNoFQBj_CGw,_kv7fcMnGEeGLNoFQBj_CGw
+Element-Name: 1_addExecEnv_fromPreferences
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _AxQJQMnUEeGLNoFQBj_CGw
+Save-Time: 9/24/12 9:55 AM
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+*** Context ***
++ Clear Workspace
++ No Execution Environment is linked to the LDT
+
+*** Actions ***
+- Window -> Preferences
+- Lua -> Execution Environment -> Add...
+- Select an Execution Environment to add -> Open -> Ok
+
+*** Assertions ***
+# The Execution Environment is linked to the LDT
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+/*********************
+*	Created by: Simon Gaestel
+*	Creation date: 07/09/2012
+*	Last Update: 07/16/2012
+*********************/
+
+// Add execution environment
+get-menu "Window/Preferences" | click
+get-window Preferences | get-tree | select "Lua/Execution Environments"
+
+//set-dialog-result File with EE path
+set-dialog-result File "platform:/resource/../q7-external-files/EE/gideros.zip"
+
+with [get-window Preferences] {
+    get-button "Add..." | click
+    get-button OK | click
+}
+
+// Check execution environment
+get-menu "Window/Preferences" | click
+get-window Preferences | get-tree | select "Lua/Execution Environments"
+with [get-window Preferences | get-tree -after [get-label "Supported execution environments:"]] {
+    get-property itemCount | equals 2 | verify-true
+    get-item "gideros-2012.2.2.1" | get-property caption | equals "gideros-2012.2.2.1" | verify-true
+}
+get-window Preferences | get-button OK | click
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

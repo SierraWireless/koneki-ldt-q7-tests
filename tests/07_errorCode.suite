@@ -1,0 +1,18 @@
+--- Q7 testcase ---
+Q7-vendor: www.xored.com/q7
+Format-Version: 1.0
+Element-Name: 07_errorCode
+Element-Type: testsuite
+Element-Version: 2.0
+Save-Time: 7/24/12 2:59 PM
+Id: _WP3AUNWPEeGFMoSoUTDWjQ
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
+Entry-Name: testcase-items
+Content-Type: text/testcase
+
+_nQ9FgNStEeGKjezHpf7UXA	// kind: 'test' name: '2_checkErrorCode_goingToNextOne' path: '07_errorCode/2_checkErrorCode_goingToNextOne.test'
+_Og1DgdScEeGKjezHpf7UXA	// kind: 'test' name: '1_checkErrorCode_onFirstError' path: '07_errorCode/1_checkErrorCode_onFirstError.test'
+_SuAl0NVxEeGFMoSoUTDWjQ	// kind: 'test' name: '3_checkError_inProblemsView' path: '07_errorCode/3_checkError_inProblemsView.test'
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--

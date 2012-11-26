@@ -1,0 +1,68 @@
+--- Q7 testcase ---
+Q7-vendor: www.xored.com/q7
+Format-Version: 1.0
+Element-Name: createTemplate2
+Context-Type: com.xored.q7.ecl.context
+Element-Type: context
+Element-Version: 2.0
+Save-Time: 7/24/12 10:14 AM
+Id: _C1UL4NTOEeGKjezHpf7UXA
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
+Entry-Name: .ecl.context
+Content-Type: text/ecl
+
+get-menu "Window/Preferences" | click
+with [get-window Preferences] {
+    get-tree | select "Lua/Editor/Templates"
+    get-button "New..." | click
+    with [get-window "New Template"] {
+        get-editbox -after [get-label "Name:"] | set-text newTemplate2
+        get-editbox -after [get-label "Description:"] | set-text newTemplateDesc2
+        get-text-viewer | type-text "function new2 ("
+        with [get-text-viewer] {
+            type-text "${var1}, ${var2}, ${var3}, "
+        }
+        get-button "Insert Variable..." | click
+        get-window -from "CompletionProposalPopup.createProposalSelector()" | get-table | select "language - Current script language" 
+            | click -default
+        with [get-text-viewer] {
+            type-text ")"
+            key-type Enter
+        }
+        get-text-viewer | type-text "${var1} = "
+        get-button "Insert Variable..." | click
+        get-window -from "CompletionProposalPopup.createProposalSelector()" | get-table 
+            | select "module_name - Module name" | click -default
+        with [get-text-viewer] {
+            key-type Enter
+            type-text "${var2} = "
+        }
+        get-button "Insert Variable..." | click
+        get-window -from "CompletionProposalPopup.createProposalSelector()" | get-table 
+            | select "module_short_name - Module short name" | click -default
+        with [get-text-viewer] {
+        	key-type Enter
+        	type-text "${var3} = "
+        }
+        get-button "Insert Variable..." | click
+        get-window -from "CompletionProposalPopup.createProposalSelector()" | get-table | select "file - Current file name" 
+            | click -default
+        with [get-text-viewer] {
+            key-type Enter
+            type-text end
+            key-type Enter
+            type-text "${cursor}"
+        }        
+        get-editbox -after [get-label "Pattern:"] | get-property text | equals "function new2 (${var1}, ${var2}, ${var3}, ${language})\n"
+		    + "${var1} = ${module_name}\n"
+		    + "${var2} = ${module_short_name}\n"
+		    + "${var3} = ${file}\n"
+		    + "end\n"
+		    + "${cursor}" | verify-true
+        get-button OK | click
+    }
+    get-button OK | click
+}
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--

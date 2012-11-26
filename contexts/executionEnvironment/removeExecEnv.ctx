@@ -1,0 +1,44 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Context-Type: com.xored.q7.ecl.context
+Element-Name: removeExecEnv
+Element-Type: context
+Element-Version: 2.0
+Id: _kv7fcMnGEeGLNoFQBj_CGw
+Save-Time: 10/1/12 5:12 PM
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
+Content-Type: text/ecl
+Entry-Name: .ecl.context
+
+/*********************
+*	Created by: Simon Gaestel
+*	Creation date: 07/09/2012
+*	Last update: 07/16/2012
+*********************/
+
+get-menu "Window/Preferences" | click
+with [get-window Preferences] {
+	get-tree | select "Lua/Execution Environments"
+    if -condition [get-tree -after [get-label "Supported execution environments:"] | get-property itemCount -raw | int | not-eq 0]
+    -then {
+    	// Remove EE "gideros-2012.2.2.1" if installed
+	    if -condition [get-tree -after [get-label "Supported execution environments:"] | get-property "getItems().TreeItem[0].getText()" -raw | eq "gideros-2012.2.2.1"]
+	    -then {
+	    	get-tree -after [get-label "Supported execution environments:"] | select "gideros-2012.2.2.1"
+	    	get-button Remove | click
+	    }
+    	// Remove EE "lua-5.1" if installed
+	    if -condition [get-tree -after [get-label "Supported execution environments:"] | get-property "getItems().TreeItem[0].getText()" -raw | eq "lua-5.1"]
+	    -then {
+	    	get-tree -after [get-label "Supported execution environments:"] | select "lua-5.1"
+	    	get-button Remove | click
+	    }	    
+	    
+    	get-button OK | click
+	} -else {
+		get-button Cancel | click
+	}
+}
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--

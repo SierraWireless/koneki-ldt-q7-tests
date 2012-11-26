@@ -1,0 +1,112 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _u4EL4MmsEeGLNoFQBj_CGw,_POZ54MnVEeGLNoFQBj_CGw
+Element-Name: 5_checkOccurenceHighlight_templateVariable
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _zhe_MNAcEeGdQofXVFAkQg
+Save-Time: 9/24/12 9:55 AM
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+*** Context ***
++ Clear Workspace
++ A project is created in the workspace without Execution Environment
+
+*** Actions ***
+- Open the main.lua file
+- Start typing a known template
+- Press CTRL+Space to auto-complete it, then press tab until you are in the main loop ("for" function for example)
+- Re-use a pre-filled parameter
+- Click once on the parameter
+
+*** Assertions ***
+# All occurences of the parameter in the function and its declaration are highlighted
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+/*********************
+*	Created by: Simon Gaestel
+*	Creation date: 07/17/2012
+*********************/
+
+// Open the main.lua file
+with [get-view "Script Explorer" | get-tree] {
+    select "Project_noExecEnv/src/main.lua" | double-click
+}
+
+// Enter a template with pre-filled variables and re-use them in the template
+with [get-editor main | get-text-viewer] {
+    set-caret-pos 2 1
+    type-text "fori"
+    key-type "M1+SPACE"
+    key-type Enter
+    key-type Tab -times 2
+    type-text "{}"
+    key-type Tab
+    type-text "key = 1"
+    key-type Enter
+    type-text "print(var)"
+    set-caret-pos 6 1
+    type-text "key = 2"
+    key-type Enter
+    type-text "print(var)"
+    key-type Enter
+	set-caret-pos 2 9
+    key-type Left
+}
+
+// Check the parameters are highlighted only in the template
+with [get-editor main | get-editbox] {
+    get-property "getStyleRanges().StyleRange[9].start" | equals 26 | verify-true
+    get-property "getStyleRanges().StyleRange[9].length" | equals 3 | verify-true
+    get-property "getStyleRanges().StyleRange[9].font" | equals null | verify-true
+    get-property "getStyleRanges().StyleRange[9].foreground" | equals "#676767" | verify-true
+    get-property "getStyleRanges().StyleRange[9].background" | equals "#D4D4D4" | verify-true
+    
+    get-property "getStyleRanges().StyleRange[21].start" | equals 53 | verify-true
+    get-property "getStyleRanges().StyleRange[21].length" | equals 3 | verify-true
+    get-property "getStyleRanges().StyleRange[21].font" | equals null | verify-true
+    get-property "getStyleRanges().StyleRange[21].foreground" | equals "#676767" | verify-true
+    get-property "getStyleRanges().StyleRange[21].background" | equals "#D4D4D4" | verify-true
+    
+    get-property "getStyleRanges().StyleRange[34].start" | equals 77 | verify-true
+    get-property "getStyleRanges().StyleRange[34].length" | equals 3 | verify-true
+    get-property "getStyleRanges().StyleRange[34].font" | equals null | verify-true
+    get-property "getStyleRanges().StyleRange[34].foreground" | equals "#000000" | verify-true
+    get-property "getStyleRanges().StyleRange[34].background" | equals "" | verify-true
+}
+with [get-editor main | get-text-viewer] {
+    set-caret-pos 2 14
+    key-type Left
+}
+with [get-editor main | get-editbox] {
+	get-property "styles.text" -index 12 | equals var | verify-true
+    get-property "getStyleRanges().StyleRange[12].start" | equals 31 | verify-true
+    get-property "getStyleRanges().StyleRange[12].length" | equals 3 | verify-true
+    get-property "getStyleRanges().StyleRange[12].font" | equals null | verify-true
+    get-property "getStyleRanges().StyleRange[12].foreground" | equals "#676767" | verify-true
+    get-property "getStyleRanges().StyleRange[12].background" | equals "#D4D4D4" | verify-true
+    
+    get-property "styles.text" -index 29 | equals var | verify-true
+    get-property "getStyleRanges().StyleRange[29].start" | equals 68 | verify-true
+    get-property "getStyleRanges().StyleRange[29].length" | equals 3 | verify-true
+    get-property "getStyleRanges().StyleRange[29].font" | equals null | verify-true
+    get-property "getStyleRanges().StyleRange[29].foreground" | equals "#676767" | verify-true
+    get-property "getStyleRanges().StyleRange[29].background" | equals "#D4D4D4" | verify-true
+    
+    get-property "styles.text" -index 42 | equals var | verify-true
+    get-property "getStyleRanges().StyleRange[42].start" | equals 91 | verify-true
+    get-property "getStyleRanges().StyleRange[42].length" | equals 3 | verify-true
+    get-property "getStyleRanges().StyleRange[42].font" | equals null | verify-true
+    get-property "getStyleRanges().StyleRange[42].foreground" | equals "#000000" | verify-true
+    get-property "getStyleRanges().StyleRange[42].background" | equals "" | verify-true
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

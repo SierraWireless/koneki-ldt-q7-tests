@@ -1,0 +1,53 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _u4EL4MmsEeGLNoFQBj_CGw,_POZ54MnVEeGLNoFQBj_CGw
+Element-Name: 5_collapseCodeFolding
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _HvPssQycEeKLzKTGD6m6Ig
+Save-Time: 10/2/12 5:08 PM
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+*** Context ***
++ Clear Workspace
++ A project is created without Execution Environment
+ 
+*** Actions ***
+- Open the main.lua file
+- Write some code parts with bed indentation
+- Right-Click -> Source -> Format
+ 
+*** Assertions ***
+# All the code have been correctly indented
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+// Open main.lua file
+with [get-view "Script Explorer" | get-tree] {
+    select "Project_noExecEnv/src/main.lua" | click -default
+    select "Project_noExecEnv/src/main.lua" | double-click
+}
+
+// Collapse function "main"
+get-editor main | get-left-ruler | get-ruler-column ProjectionRulerColumn | click-ruler -line 1
+
+// Check function has been collapsed
+get-editor main | get-editbox | get-property text | equals "local function main()\n"
+    + "main()" | verify-true
+
+// Expand function "main"
+get-editor main | get-left-ruler | get-ruler-column ProjectionRulerColumn | click-ruler -line 1
+
+// Check function has been expanded
+get-editor main | get-editbox | get-property text | equals "local function main()\n\n"
+    + "end\n"
+    + "main()" | verify-true
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

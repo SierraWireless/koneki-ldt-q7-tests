@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>tests</artifactId>
+		<groupId>org.eclipse.koneki.ldt</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>org.eclipse.koneki.ldt</groupId>
+	<artifactId>q7-tests</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+	<packaging>q7test</packaging>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>q7-releases</id>
+			<name>Xored Q7 Maven repository</name>
+			<url>http://maven.xored.com/nexus/content/repositories/q7-releases/</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>q7-snapshots</id>
+			<name>Xored Q7 Maven repository</name>
+			<url>http://maven.xored.com/nexus/content/repositories/q7-snapshots/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<repositories>
+		<repository>
+			<id>eclipses</id>
+			<name>Eclipse packages in Nexus repository</name>
+			<url>http://maven.xored.com/nexus/content/repositories/thirdparty/</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.eclipse.koneki.ldt</groupId>
+			<artifactId>org.eclipse.koneki.ldt.product-product</artifactId>
+			<type>pom</type>
+			<version>0.1.0-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
+	<properties>
+		<q7-maven-version>1.2.8</q7-maven-version>
+		<q7-runner-version>1.2.8</q7-runner-version>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>windows</id>
+			<activation>
+				<os>
+					<family>Windows</family>
+				</os>
+			</activation>
+			<properties>
+				<product.extention>zip</product.extention>
+			</properties>
+		</profile>
+		<profile>
+			<id>unix</id>
+			<activation>
+				<os>
+					<family>unix</family>
+				</os>
+			</activation>
+			<properties>
+				<product.extention>tar.gz</product.extention>
+			</properties>
+		</profile>
+	</profiles>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<!-- here the phase you need -->
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/target/q7-external-files</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${basedir}/q7-external-files</directory>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.xored.q7</groupId>
+				<artifactId>q7-maven-plugin</artifactId>
+				<version>${q7-maven-version}</version>
+				<extensions>true</extensions>
+				<configuration>
+					<aut>
+						<groupId>org.eclipse.koneki.ldt</groupId>
+						<artifactId>org.eclipse.koneki.ldt.product-product</artifactId>
+						<extension>${product.extention}</extension>
+					</aut>
+					<q7>
+						<licenseFile>${project.basedir}/q7.license</licenseFile>
+						<version>${q7-runner-version}</version>
+					</q7>
+					<skipTags>
+						<skipTag>BUG-390234</skipTag>
+						<skipTag>BUG-390231</skipTag>
+					</skipTags>
+				</configuration>
+			</plugin>
+			<plugin>
+	            <artifactId>maven-antrun-plugin</artifactId>
+	            <version>1.6</version>
+	            <executions>
+	                <execution>
+	                    <id>update-tests-results</id>
+	                    <phase>compile</phase>
+	                    <configuration>
+	                        <target>
+	                            <copy file="${project.basedir}/target/surefire-reports/q7-tests.junit.xml" tofile="${project.basedir}/target/surefire-reports/TEST-q7-tests.junit.xml"/>
+	                        </target>
+	                    </configuration>
+	                    <goals>
+	                        <goal>run</goal>
+	                    </goals>
+	                </execution>
+	            </executions>
+	        </plugin>
+		</plugins>
+	</build>
+</project>
