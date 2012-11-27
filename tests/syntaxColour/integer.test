@@ -1,0 +1,54 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _OtCUkDfmEeKGwZ-lPsgu4A,_POZ54MnVEeGLNoFQBj_CGw
+Element-Name: integer
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _r1_fsNAHEeGdQofXVFAkQg
+Save-Time: 11/27/12 4:43 PM
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+*** Context ***
++ Clear Workspace
++ A project is created in the workspace without Execution Environment
+
+*** Actions ***
+- Open the main.lua file
+- Enter an integer
+
+*** Assertions ***
+# Check syntaxic coloration
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+/*********************
+*	Created by: Simon Gaestel
+*	Creation date: 07/17/2012
+*********************/
+
+// Open the main.lua file and enter a string
+with [get-view "Script Explorer" | get-tree] {
+    select "Project_noExecEnv/src/main.lua" | double-click
+}
+
+with [get-editor main | get-text-viewer] {
+    set-caret-pos 2 1
+    type-text "a = 3"
+}
+
+// Check syntaxic coloration for reserved words
+with [get-editor main | get-editbox] {
+// Check if
+    get-property "styles.text" -index 11 | equals 3 | verify-true
+    get-property "styles.fontStyle" -index 11 | equals normal | verify-true
+    get-property "styles.foregroundColor" -index 11 | equals "#B91414" | verify-true
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

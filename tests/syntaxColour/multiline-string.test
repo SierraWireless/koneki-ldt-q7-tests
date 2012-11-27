@@ -2,12 +2,12 @@
 Format-Version: 1.0
 Q7-vendor: www.xored.com/q7
 Contexts: _u4EL4MmsEeGLNoFQBj_CGw,_POZ54MnVEeGLNoFQBj_CGw
-Element-Name: 2_checkSyntaxColour_string
+Element-Name: multiline-string
 Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
-Id: _ofBzoc_2EeGdQofXVFAkQg
-Save-Time: 9/24/12 9:55 AM
+Id: _kbLt4TioEeKKJbz7sQ1rZw
+Save-Time: 11/27/12 5:29 PM
 Testcase-Type: ecl
 
 ------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
@@ -20,7 +20,7 @@ Entry-Name: .description
 
 *** Actions ***
 - Open the main.lua file
-- Enter a string
+- Enter an integer
 
 *** Assertions ***
 # Check syntaxic coloration
@@ -31,8 +31,7 @@ Entry-Name: .content
 
 /*********************
 *	Created by: Simon Gaestel
-*	Creation date: 07/17/2012
-*********************/
+********************/
 
 // Open the main.lua file and enter a string
 with [get-view "Script Explorer" | get-tree] {
@@ -41,14 +40,20 @@ with [get-view "Script Explorer" | get-tree] {
 
 with [get-editor main | get-text-viewer] {
     set-caret-pos 2 1
-    type-text "a = \"azerty"
+    type-text "a = [[My"
+    //remove auto close bracket
+    key-type Del -times 2
     key-type Enter
+    type-text "multilne"
+    key-type Enter
+    type-text "string]]"
 }
 
 // Check syntaxic coloration for reserved words
 with [get-editor main | get-editbox] {
-// Check if
-    get-property "styles.text" -index 11 | equals "\"azerty\"" | verify-true
+    get-property "styles.text" -index 11 | equals "[[My\n"
+        + "multilne\n"
+        + "string]]" | verify-true
     get-property "styles.fontStyle" -index 11 | equals normal | verify-true
     get-property "styles.foregroundColor" -index 11 | equals "#2A00FF" | verify-true
 }
