@@ -1,13 +1,13 @@
 --- Q7 testcase ---
 Format-Version: 1.0
 Q7-vendor: www.xored.com/q7
-Contexts: _u4EL4MmsEeGLNoFQBj_CGw
-Element-Name: 1_createProject_noExecEnv
+Contexts: _OtCUkDfmEeKGwZ-lPsgu4A
+Element-Name: noExecEnv
 Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _QJyrQMmtEeGLNoFQBj_CGw
-Save-Time: 9/24/12 9:55 AM
+Save-Time: 11/27/12 2:31 PM
 Testcase-Type: ecl
 
 ------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
@@ -32,9 +32,7 @@ Entry-Name: .content
 
 /*********************
 *	Created by: Simon Gaestel
-*	Creation date: 07/09/2012
-*	Last update: 07/10/2012
-*********************/
+********************/
 
 // Create project
 get-view "Script Explorer" | get-tree | get-menu "New/Lua Project" | click

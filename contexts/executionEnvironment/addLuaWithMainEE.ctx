@@ -1,0 +1,22 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Context-Type: com.xored.q7.ecl.context
+Element-Name: addLuaWithMainEE
+Element-Type: context
+Element-Version: 2.0
+Id: _LzNMADh7EeKILbCXTfQx-A
+Save-Time: 11/27/12 2:52 PM
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
+Content-Type: text/ecl
+Entry-Name: .ecl.context
+
+get-preferences-menu | click
+get-window Preferences | get-tree | select "Lua/Execution Environments"
+set-dialog-result File "platform:/resource/../q7-external-files/EE/luaWithMain-5.1.zip"
+with [get-window Preferences] {
+    get-button "Add..." | click
+    get-button OK | click
+}
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--

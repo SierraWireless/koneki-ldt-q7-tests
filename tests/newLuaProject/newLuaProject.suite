@@ -1,0 +1,20 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Element-Name: newLuaProject
+Element-Type: testsuite
+Element-Version: 2.0
+Id: _uSpRMMnZEeGLNoFQBj_CGw
+Save-Time: 11/27/12 2:28 PM
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
+Content-Type: text/testcase
+Entry-Name: testcase-items
+
+__QNkYMm_EeGLNoFQBj_CGw	// kind: 'test' name: 'withExecEnv' path: 'withExecEnv.test'
+_QJyrQMmtEeGLNoFQBj_CGw	// kind: 'test' name: 'noExecEnv' path: 'noExecEnv.test'
+__SpJIMnGEeGLNoFQBj_CGw	// kind: 'test' name: 'withoutMain' path: 'withExecEnv2.test'
+_OXw4cMpnEeG5YN1oc9uimw	// kind: 'test' name: 'alreadyExistingProject' path: 'alreadyExistingProject.test'
+_kMwwEDfnEeKib9RluRnBiQ	// kind: 'test' name: 'withCustomMain' path: 'withCustomMain.test'
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--
