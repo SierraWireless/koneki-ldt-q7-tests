@@ -1,0 +1,27 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _OtCUkDfmEeKGwZ-lPsgu4A
+Element-Name: manageExecEnvFromPreferences
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _WPuzgDfyEeKGwZ-lPsgu4A
+Save-Time: 11/27/12 3:55 PM
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+// access to preference page
+get-preferences-menu | click
+get-window Preferences | get-tree | select "Lua/Execution Environments"
+
+// check the page is opened
+get-window Preferences | get-label "Execution Environments" | get-property caption | equals "Execution Environments" 
+    | verify-true
+    
+// workarround close windows
+get-window Preferences | get-button Cancel | click
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

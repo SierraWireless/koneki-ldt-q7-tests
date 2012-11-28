@@ -1,0 +1,27 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _OtCUkDfmEeKGwZ-lPsgu4A
+Element-Name: checkLua5.1isEmbedded
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _KFwYsDfsEeKGwZ-lPsgu4A
+Save-Time: 11/26/12 6:53 PM
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-preferences-menu | click
+with [get-window Preferences] {
+    get-tree | select "Lua/Execution Environments"
+}
+
+with [get-window Preferences | get-tree -after [get-label "Supported execution environments:"]] {
+    get-property itemCount | equals 1 | verify-true
+    get-property "getItems().TreeItem[0].getText()" | contains "Embedded" | verify-true
+    get-property "getItems().TreeItem[0].getText()" | contains "lua-5.1" | verify-true
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
