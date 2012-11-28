@@ -5,7 +5,7 @@ Element-Name: allTests
 Element-Type: testsuite
 Element-Version: 2.0
 Id: _BpXOQMnaEeGLNoFQBj_CGw
-Save-Time: 11/28/12 5:41 PM
+Save-Time: 11/28/12 7:31 PM
 
 ------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
 Content-Type: text/testcase
@@ -19,5 +19,9 @@ _sZFYgDlsEeKGwZ-lPsgu4A	// kind: 'suite' name: 'toggleComment' path: 'toggleComm
 _lhHQgMnhEeGLNoFQBj_CGw	// kind: 'suite' name: 'contentAssist' path: 'contentAssist/contentAssist.suite'
 _w8x4wM9WEeGqt76k24hgqg	// kind: 'suite' name: 'syntaxColour' path: 'syntaxColour/syntaxColour.suite'
 _gi1NIDl1EeKGwZ-lPsgu4A	// kind: 'suite' name: 'formatter' path: 'formatter/formatter.suite'
+_muRXgDl8EeKhjM__PwLdLw	// kind: 'suite' name: 'manageInterpreter' path: 'manageInterpreter/manageInterpreter.suite'
+_qz6MoDl7EeKGwZ-lPsgu4A	// kind: 'suite' name: 'runLuaApplication' path: 'runLuaApplication/runLuaApplication.suite'
+_DKq_UDmAEeKGwZ-lPsgu4A	// kind: 'suite' name: 'debugLuaApplication' path: 'debugLuaApplication/debugLuaApplication.suite'
+_6vX0MM9WEeGqt76k24hgqg	// kind: 'suite' name: 'semanticHighlight' path: 'semanticHighlight/05_semanticHighlight.suite'
 
 ------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--

@@ -1,0 +1,26 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Context-Type: com.xored.q7.ecl.context
+Element-Name: createProjectWithRunnableMain
+Element-Type: context
+Element-Version: 2.0
+Id: _5Gjy4Dl7EeKGwZ-lPsgu4A
+Save-Time: 11/28/12 5:55 PM
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
+Content-Type: text/ecl
+Entry-Name: .ecl.context
+
+get-menu "File/New/Other..." | click
+get-window New | get-tree | select "Lua/Lua Project" | double-click
+with [get-window "New Lua project"] {
+    get-editbox -after [get-label "Project name:"] | set-text myproject
+    get-button Finish | click
+}
+with [get-editor main | get-text-viewer] {
+    set-caret-pos 2 1
+    type-text "print\'hello"
+}
+get-menu "File/Save" | click
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--

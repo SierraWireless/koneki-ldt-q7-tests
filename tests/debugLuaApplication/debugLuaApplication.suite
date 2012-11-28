@@ -1,0 +1,20 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Element-Name: debugLuaApplication
+Element-Type: testsuite
+Element-Version: 2.0
+Id: _DKq_UDmAEeKGwZ-lPsgu4A
+Save-Time: 11/28/12 7:06 PM
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
+Content-Type: text/testcase
+Entry-Name: testcase-items
+
+_Gao7QDmAEeKGwZ-lPsgu4A	// kind: 'test' name: 'debugWithDebugAsShortCut' path: 'debugWithDebugAsShortCut.test'
+_GbMU4DmAEeKGwZ-lPsgu4A	// kind: 'test' name: 'debugWithDebugConfigurationMenu' path: 'debugWithDebugConfigurationMenu.test'
+_GbX7EDmAEeKGwZ-lPsgu4A	// kind: 'test' name: 'debugWithToolBarButton' path: 'debugWithToolBarButton.test'
+_uYbNgDmBEeKGwZ-lPsgu4A	// kind: 'test' name: 'debugBreakAtBreakPoint' path: 'debugBreakAtBreakPoint.test'
+_sDKmUDmBEeKGwZ-lPsgu4A	// kind: 'test' name: 'debugBreakOnFirstLine' path: 'debugBreakOnFirstLine.test'
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--

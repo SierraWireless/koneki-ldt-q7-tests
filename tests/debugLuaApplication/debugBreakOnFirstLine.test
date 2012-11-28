@@ -1,0 +1,44 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _OtCUkDfmEeKGwZ-lPsgu4A,_5Gjy4Dl7EeKGwZ-lPsgu4A,_5xp28Dl-EeKGwZ-lPsgu4A
+Element-Name: debugBreakOnFirstLine
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _sDKmUDmBEeKGwZ-lPsgu4A
+Save-Time: 11/28/12 7:35 PM
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+// create launch conf
+get-menu "Run/Debug Configurations..." | click
+with [get-window "Debug Configurations"] {
+    get-tree | select "Lua Application"
+    get-button "New launch configuration" | click
+    get-group "Debug Options" | get-button "Break on first line" | click
+    get-button Debug | click
+}
+
+// open debug perspective
+get-button "Open Perspective" | click
+get-window "Open Perspective" | get-table | select Debug | double-click
+
+// check application is launch in debug view
+get-view Debug | get-tree 
+    | get-item "New_configuration \\[Lua Application\\]"
+    | get-property caption | equals "New_configuration \\[Lua Application\\]" | verify-true
+    
+// check break point is stopped at line 3 (first line oO)
+get-editor main |   get-left-ruler | hover-ruler -line 3
+get-window -from "Information Window" | get-editbox | get-property text | equals "Debug Current Instruction Pointer" | verify-true
+
+// resume
+get-button "Resume (F8)" | click
+
+// check hello is written in console
+get-view Console | get-editbox -type Text | get-property text | equals hello | verify-true
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
