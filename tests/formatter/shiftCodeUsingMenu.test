@@ -1,0 +1,49 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _qtx0wDfhEeKGwZ-lPsgu4A
+Element-Name: shiftCodeUsingMenu
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: __cA14Dl3EeKGwZ-lPsgu4A
+Save-Time: 11/28/12 5:26 PM
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+// Open the main.lua file
+with [get-view "Script Explorer" | get-tree] {
+    select "myproject/src/main.lua" | double-click
+}
+
+// replace current text by text to format
+with [get-editor main | get-text-viewer] {
+	key-type "M1+a"
+	type-text "local function f()\n"
+	+ "print()\n"
+    + "end\n" 
+}
+
+// call shift right
+with [get-editor main | get-editbox] {
+	key-type "M1+a"
+ 	get-menu "Source/Shift Right" | click
+    get-property text  | equals "\tlocal function main()\n"
+    	+ "\t\n"
+    	+ "\tend\n" 
+    	+ "\tmain()\n"| verify-false
+}
+
+// call shift left
+with [get-editor main | get-editbox] {
+	key-type "M1+a"
+ 	get-menu "Source/Shift Left" | click
+    get-property text  | equals "local function main()\n"
+    	+ "\n"
+    	+ "end\n" 
+    	+ "main()\n"| verify-false
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
