@@ -5,7 +5,7 @@ Element-Name: allTests
 Element-Type: testsuite
 Element-Version: 2.0
 Id: _BpXOQMnaEeGLNoFQBj_CGw
-Save-Time: 11/28/12 3:41 PM
+Save-Time: 11/28/12 4:49 PM
 
 ------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
 Content-Type: text/testcase
@@ -15,5 +15,6 @@ _uSpRMMnZEeGLNoFQBj_CGw	// kind: 'suite' name: 'newLuaProject' path: 'newLuaProj
 _dfDRATfeEeKGwZ-lPsgu4A	// kind: 'suite' name: 'newLuaFile' path: 'newLuaFile/newLuaFile.suite'
 _FdRKoDfsEeKGwZ-lPsgu4A	// kind: 'suite' name: 'executionEnvironment' path: 'executionEnvironment/executionEnvironment.suite'
 _L763gDlJEeKGwZ-lPsgu4A	// kind: 'suite' name: 'checkdocumentation' path: 'checkdocumentation/checkdocumentation.suite'
+_sZFYgDlsEeKGwZ-lPsgu4A	// kind: 'suite' name: 'toggleComment' path: 'toggleComment/toggleComment.suite'
 
 ------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--
