@@ -1,0 +1,51 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _OtCUkDfmEeKGwZ-lPsgu4A,_POZ54MnVEeGLNoFQBj_CGw
+Element-Name: localvar
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _AJfToDk7EeKKJbz7sQ1rZw
+Save-Time: 11/28/12 3:15 PM
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+*** Context ***
++ Clear Workspace
++ A project is created in the workspace without Execution Environment
+
+*** Actions ***
+- Open the main.lua file
+- Start typing a default function in the code editor
+- Type CTRL+Space
+# Check 1
+- Select the first option -> Enter
+# Check 2
+
+*** Assertions ***
+# Check 1 : The content assist is displayed giving multiple possibilities
+# Check 2 : The typed text is auto-completed.
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-editor main | get-text-viewer | set-caret-pos 2 1
+with [get-editor main | get-text-viewer] {
+    type-text "local variable"
+    key-type Enter
+    type-text v
+    key-type "M1+SPACE"
+}
+
+with [get-editor main | get-editbox] {
+    get-property "styles.text" -index 10 | equals variable | verify-true
+    get-property "styles.fontStyle" -index 10 | equals normal | verify-true
+    get-property "styles.foregroundColor" -index 10 | equals "#000000" | verify-true
+}
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

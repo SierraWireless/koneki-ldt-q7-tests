@@ -1,13 +1,13 @@
 --- Q7 testcase ---
 Format-Version: 1.0
 Q7-vendor: www.xored.com/q7
-Contexts: _u4EL4MmsEeGLNoFQBj_CGw,_POZ54MnVEeGLNoFQBj_CGw
-Element-Name: 4_contentAssist_existingVariable
+Contexts: _OtCUkDfmEeKGwZ-lPsgu4A,_5WaA8MnWEeGLNoFQBj_CGw
+Element-Name: functionFromEE
 Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
-Id: _VvbwIMqUEeG5YN1oc9uimw
-Save-Time: 9/24/12 9:55 AM
+Id: _JEy9sMndEeGLNoFQBj_CGw
+Save-Time: 11/28/12 3:32 PM
 Testcase-Type: ecl
 
 ------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
@@ -21,12 +21,15 @@ Entry-Name: .description
 
 *** Actions ***
 - Open the main.lua file
-- Create a variable in the "main" function
-- Start typing the previously created variable
+- Start typing a function from the Execution Environment linked to the project
 - Type CTRL+Space
+# Check 1
+- Select the first option -> Enter
+# Check 2
 
 *** Assertions ***
-# The variable is auto-completed
+# Check 1 : The content assist is displayed giving multiple possibilites
+# Check 2 : The typed text is auto-completed.
 ------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
 Content-Type: text/ecl
@@ -34,29 +37,25 @@ Entry-Name: .content
 
 /*********************
 *	Created by: Simon Gaestel
-*	Creation date: 07/10/2012
 *********************/
 
 // Open main.lua file
 with [get-view "Script Explorer" | get-tree] {
-    select "Project_noExecEnv/src/main.lua" | double-click
+    select "newProject_execEnvOnCreation/src/main.lua" | double-click
 }
 
-// Define a new variable, re-use it with the content assist to auto-complete the variable
+// Open the content-assist after a few letters typed
 with [get-editor main | get-text-viewer] {
-    set-caret-pos 1 22
-    key-type Enter -times 2
-    type-text "local variable_custom"
-    key-type Enter -times 2
-    type-text var
+    set-caret-pos 2 1
+    type-text math
+    type-text "."
     key-type "M1+SPACE"
-    type-text " = 1"
 }
 
-// Check the final text
-get-editor main | get-editbox | get-property text | equals "local function main()\n\n"
-    + "local variable_custom\n\n"
-    + "variable_custom = 1\n\n"
+get-window -from "CompletionProposalPopup.createProposalSelector()" | get-table | select "abs\\(x\\) - math" | click 
+    -default
+get-editor main | get-editbox | get-property text | equals "local function main()\n"
+    + "math.abs(x)\n"
     + "end\n"
     + "main()" | verify-true
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
