@@ -1,0 +1,23 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _OtCUkDfmEeKGwZ-lPsgu4A
+Element-Name: JNLua
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _D68GADl9EeKhjM__PwLdLw
+Save-Time: 11/28/12 6:01 PM
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-preferences-menu | click
+get-window Preferences | get-tree | select "Lua/Interpreters"
+
+with [get-window Preferences | get-table] {
+    get-item "Lua 5.1 on JNLua" | get-property "getText()" | equals "Lua 5.1 on JNLua" | verify-true
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

@@ -1,0 +1,37 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _OtCUkDfmEeKGwZ-lPsgu4A
+Element-Name: 01_addInterpreter
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _TcV-YDl9EeKhjM__PwLdLw
+Save-Time: 11/28/12 6:21 PM
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-preferences-menu | click
+get-window Preferences | get-tree | select "Lua/Interpreters"
+
+
+with [get-window Preferences] {
+    get-button "Add..." | click
+    with [get-window "Add interpreter"] {
+        get-editbox -after [get-label "Interpreter executable:"] | set-text lua
+        get-editbox -after [get-label "Interpreter name:"] | set-text lua
+        get-button OK | click
+    }
+}
+with [get-window Preferences | get-table] {
+    get-item lua | get-property "getData().getName()" | equals lua | verify-true
+    get-item lua | get-property "getData().getInstallLocation().getName()" | equals lua | verify-true
+    get-item lua | get-property "getData().getInterpreterInstallType().getName()" | equals "Generic Lua" | verify-true
+}
+with [get-window Preferences] {
+    get-button OK | click
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
