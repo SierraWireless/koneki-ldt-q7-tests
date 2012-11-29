@@ -5,7 +5,7 @@ Element-Name: allTests
 Element-Type: testsuite
 Element-Version: 2.0
 Id: _BpXOQMnaEeGLNoFQBj_CGw
-Save-Time: 11/29/12 11:51 AM
+Save-Time: 11/29/12 5:24 PM
 
 ------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
 Content-Type: text/testcase
@@ -15,6 +15,7 @@ _uSpRMMnZEeGLNoFQBj_CGw	// kind: 'suite' name: 'newLuaProject' path: 'newLuaProj
 _dfDRATfeEeKGwZ-lPsgu4A	// kind: 'suite' name: 'newLuaFile' path: 'newLuaFile/newLuaFile.suite'
 _FdRKoDfsEeKGwZ-lPsgu4A	// kind: 'suite' name: 'executionEnvironment' path: 'executionEnvironment/executionEnvironment.suite'
 _L763gDlJEeKGwZ-lPsgu4A	// kind: 'suite' name: 'checkdocumentation' path: 'checkdocumentation/checkdocumentation.suite'
+_afwIMNWPEeGFMoSoUTDWjQ	// kind: 'suite' name: 'codeTemplates' path: 'codeTemplates/codeTemplates.suite'
 _sZFYgDlsEeKGwZ-lPsgu4A	// kind: 'suite' name: 'toggleComment' path: 'toggleComment/toggleComment.suite'
 _lhHQgMnhEeGLNoFQBj_CGw	// kind: 'suite' name: 'contentAssist' path: 'contentAssist/contentAssist.suite'
 _w8x4wM9WEeGqt76k24hgqg	// kind: 'suite' name: 'syntaxColour' path: 'syntaxColour/syntaxColour.suite'
@@ -26,5 +27,6 @@ _6vX0MM9WEeGqt76k24hgqg	// kind: 'suite' name: 'semanticHighlight' path: 'semant
 _r6PyEDoJEeKGwZ-lPsgu4A	// kind: 'suite' name: 'goToDefinition' path: 'goToDefinition/goToDefinition.suite'
 _AE35QM9XEeGqt76k24hgqg	// kind: 'suite' name: 'occurenceHighlight' path: 'occurenceHighlight/occurenceHighlight.suite'
 _um51wNpHEeGwoqdL076Qyw	// kind: 'suite' name: 'outline' path: 'outline/outline.suite'
+_WP3AUNWPEeGFMoSoUTDWjQ	// kind: 'suite' name: 'errorCode' path: 'errorCode/07_errorCode.suite'
 
 ------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--

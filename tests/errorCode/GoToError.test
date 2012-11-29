@@ -1,0 +1,62 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _OtCUkDfmEeKGwZ-lPsgu4A,_POZ54MnVEeGLNoFQBj_CGw,_1Se8cMpuEeG5YN1oc9uimw
+Element-Name: GoToError
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _-ncFoDo4EeKhjM__PwLdLw
+Save-Time: 11/29/12 4:29 PM
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+*** Context ***
++ Clear Workspace
++ A Project is created in the workspace without Execution Environment
++ The Problems view is open
+ 
+*** Actions ***
+- Open the main.lua file
+- Enter some code with a syntax error
+- Save the modifications
+- Go to Problems view
+ 
+*** Assertions ***
+# The error is discribed in the Problems view
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+/*********************
+*	Created by: Simon Gaestel
+********************/
+
+// Open the main.lua file
+with [get-view "Script Explorer" | get-tree] {
+    select "Project_noExecEnv/src/main.lua" | double-click
+}
+// Type some code with syntax errors
+with [get-editor main | get-text-viewer] {
+    set-caret-pos 5 1
+    type-text a
+    key-type Enter
+    type-text e
+}
+
+// Save the file and open the Problems view
+get-button "Save (M1+S)" | click
+get-view Problems | get-tree 
+    | select "Errors \\(1 item\\)/line 5, char 1: This expression \\(\"a\"\\) is an identifier; a statement was expected, and only function and method call expressions can be used as statements\n"
+    + ">>> a\n"
+    + ">>>  ^" | double-click
+    
+//Check selection
+with [get-editor main | get-editbox] {
+    get-property "getSelectionText()" | equals a | verify-true
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
