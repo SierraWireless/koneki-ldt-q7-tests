@@ -1,13 +1,13 @@
 --- Q7 testcase ---
 Format-Version: 1.0
 Q7-vendor: www.xored.com/q7
-Contexts: _u4EL4MmsEeGLNoFQBj_CGw,_POZ54MnVEeGLNoFQBj_CGw,_ryZnQNoaEeGwoqdL076Qyw
+Contexts: _u4EL4MmsEeGLNoFQBj_CGw,_ryZnQNoaEeGwoqdL076Qyw,_XgmhADlcEeKGwZ-lPsgu4A
 Element-Name: 3_checkOutline_sortItems
 Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _HDYgoNolEeGwoqdL076Qyw
-Save-Time: 9/24/12 9:55 AM
+Save-Time: 11/29/12 7:35 PM
 Testcase-Type: ecl
 
 ------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
@@ -37,7 +37,7 @@ Entry-Name: .content
 
 // Open the main.lua file
 with [get-view "Script Explorer" | get-tree] {
-    select "Project_noExecEnv/src/main.lua" | double-click
+    select "myproject/src/main.lua" | double-click
 }
 
 // Declare functions and local variables
