@@ -5,7 +5,7 @@ Element-Name: allTests
 Element-Type: testsuite
 Element-Version: 2.0
 Id: _BpXOQMnaEeGLNoFQBj_CGw
-Save-Time: 11/29/12 11:31 AM
+Save-Time: 11/29/12 11:34 AM
 
 ------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
 Content-Type: text/testcase
@@ -24,5 +24,6 @@ _qz6MoDl7EeKGwZ-lPsgu4A	// kind: 'suite' name: 'runLuaApplication' path: 'runLua
 _DKq_UDmAEeKGwZ-lPsgu4A	// kind: 'suite' name: 'debugLuaApplication' path: 'debugLuaApplication/debugLuaApplication.suite'
 _6vX0MM9WEeGqt76k24hgqg	// kind: 'suite' name: 'semanticHighlight' path: 'semanticHighlight/05_semanticHighlight.suite'
 _r6PyEDoJEeKGwZ-lPsgu4A	// kind: 'suite' name: 'goToDefinition' path: 'goToDefinition/goToDefinition.suite'
+_AE35QM9XEeGqt76k24hgqg	// kind: 'suite' name: 'occurenceHighlight' path: 'occurenceHighlight/occurenceHighlight.suite'
 
 ------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--
