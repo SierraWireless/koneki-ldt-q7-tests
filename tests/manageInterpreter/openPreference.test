@@ -7,15 +7,14 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _rND3ADl8EeKhjM__PwLdLw
-Save-Time: 11/28/12 6:12 PM
+Save-Time: 11/29/12 11:06 AM
 Testcase-Type: ecl
 
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
 Content-Type: text/ecl
 Entry-Name: .content
 
-get-button Debug | click -arrow
-get-menu "Debug Configurations..." | click
+get-menu "Run/Debug Configurations..." | click
 with [get-window "Debug Configurations"] {
     get-tree | select "Lua Application"
     get-button "New launch configuration" | click
