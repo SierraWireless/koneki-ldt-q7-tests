@@ -1,0 +1,29 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _OtCUkDfmEeKGwZ-lPsgu4A,_5WaA8MnWEeGLNoFQBj_CGw
+Element-Name: ensureLocalIsListed
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _BaS2gDozEeKwdsqeq5CqFA
+Save-Time: 11/29/12 3:49 PM
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+with [get-view Outline | get-tree] {
+    get-item "main" | get-property "getData().getClassName()" 
+        | equals "org.eclipse.dltk.internal.core.SourceField" | verify-true
+    get-item "main" | get-property "getData().occurrenceCount" | equals 1 
+        | verify-true
+}
+with [get-view "Script Explorer" | get-tree] {
+    get-item "newProject_execEnvOnCreation/src/main.lua/main" | get-property "getData().getClassName()" 
+        | equals "org.eclipse.dltk.internal.core.SourceField" | verify-true
+    get-item "newProject_execEnvOnCreation/src/main.lua/main" | get-property "getData().occurrenceCount" | equals 1 
+        | verify-true
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

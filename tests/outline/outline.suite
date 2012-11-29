@@ -1,0 +1,17 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Element-Name: outline
+Element-Type: testsuite
+Element-Version: 2.0
+Id: _um51wNpHEeGwoqdL076Qyw
+Save-Time: 11/29/12 3:48 PM
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
+Content-Type: text/testcase
+Entry-Name: testcase-items
+
+_db0DgDoSEeKwdsqeq5CqFA	// kind: 'test' name: 'ensureOutlineIsFilledInActiveEditor' path: 'ensureOutlineIsFilledInActiveEditor.test'
+_BaS2gDozEeKwdsqeq5CqFA	// kind: 'test' name: 'ensureLocalIsListed' path: 'ensureLocalIsListed.test'
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--
