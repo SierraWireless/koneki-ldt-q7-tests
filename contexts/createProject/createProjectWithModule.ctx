@@ -6,7 +6,7 @@ Element-Name: createProjectWithModule
 Element-Type: context
 Element-Version: 2.0
 Id: _2OWiYDlJEeKGwZ-lPsgu4A
-Save-Time: 11/28/12 12:16 PM
+Save-Time: 11/30/12 5:58 PM
 
 ------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
 Content-Type: text/ecl
@@ -32,6 +32,8 @@ with [get-editor mymodule | get-text-viewer] {
     type-text "---@function [parent=#mytype] myfunction\n"
     type-text "\n"
     type-text "---@function [parent=#global] myglobalfunction\n"
+    type-text "\n"
+    type-text "---@field [parent=#global] myglobalvar\n"
     type-text "return nil\n"
 }
 ------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--
