@@ -1,18 +1,22 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<artifactId>tests</artifactId>
-		<groupId>org.eclipse.koneki.ldt</groupId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
 	<groupId>org.eclipse.koneki.ldt</groupId>
 	<artifactId>q7-tests</artifactId>
 	<version>0.1.0-SNAPSHOT</version>
 	<packaging>q7test</packaging>
 
 	<pluginRepositories>
+		<pluginRepository>
+			<id>sonatype-staging</id>
+			<url>https://repository.sonatype.org/content/repositories/forge</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>maven.eclipse.org</id>
+			<url>http://maven.eclipse.org/nexus/content/groups/public/</url>
+		</pluginRepository>
 		<pluginRepository>
 			<id>q7-releases</id>
 			<name>Xored Q7 Maven repository</name>
@@ -27,53 +31,90 @@
 
 	<repositories>
 		<repository>
+			<id>eclipse</id>
+			<layout>p2</layout>
+			<url>${eclipse-site}</url>
+		</repository>
+		<repository>
+			<id>koneki</id>
+			<layout>p2</layout>
+			<url>${injected-update-site}</url>
+		</repository>
+		<repository>
 			<id>eclipses</id>
 			<name>Eclipse packages in Nexus repository</name>
 			<url>http://maven.xored.com/nexus/content/repositories/thirdparty/</url>
 		</repository>
 	</repositories>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.eclipse.koneki.ldt</groupId>
-			<artifactId>org.eclipse.koneki.ldt.product-product</artifactId>
-			<type>pom</type>
-			<version>0.1.0-SNAPSHOT</version>
-		</dependency>
-	</dependencies>
-
 	<properties>
-		<q7-maven-version>1.2.8</q7-maven-version>
-		<q7-runner-version>1.2.8</q7-runner-version>
+		<q7-runner-version>1.2.11</q7-runner-version>
+		<q7-maven-version>1.2.11</q7-maven-version>
+		<tycho-version>0.15.0</tycho-version>
+		<tycho-extras-version>0.15.0</tycho-extras-version>
+		<tycho-groupid>org.eclipse.tycho</tycho-groupid>
+		<eclipse-site>http://download.eclipse.org/releases/juno</eclipse-site>
+		<injected-update-site>http://download.eclipse.org/koneki/updates-nightly</injected-update-site>
 	</properties>
-
-	<profiles>
-		<profile>
-			<id>windows</id>
-			<activation>
-				<os>
-					<family>Windows</family>
-				</os>
-			</activation>
-			<properties>
-				<product.extention>zip</product.extention>
-			</properties>
-		</profile>
-		<profile>
-			<id>unix</id>
-			<activation>
-				<os>
-					<family>unix</family>
-				</os>
-			</activation>
-			<properties>
-				<product.extention>tar.gz</product.extention>
-			</properties>
-		</profile>
-	</profiles>
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>${tycho-groupid}</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-source-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<executions>
+					<execution>
+						<id>plugin-source</id>
+						<goals>
+							<goal>plugin-source</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>${tycho-groupid}</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<resolver>p2</resolver>
+					<ignoreTychoRepositories>true</ignoreTychoRepositories>
+					<environments>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>x86_64</arch>
+						</environment>
+					</environments>
+				</configuration>
+			</plugin>
+
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>2.6</version>
@@ -103,9 +144,19 @@
 				<extensions>true</extensions>
 				<configuration>
 					<aut>
-						<groupId>org.eclipse.koneki.ldt</groupId>
-						<artifactId>org.eclipse.koneki.ldt.product-product</artifactId>
-						<extension>${product.extention}</extension>
+						<groupId>eclipse</groupId>
+						<artifactId>sdk</artifactId>
+						<version>3.7.0</version>
+						<injections>
+							<injection>
+								<site>${injected-update-site}</site>
+								<features>
+									<feature>org.eclipse.koneki.ldt.feature.group</feature>
+									<feature>org.eclipse.dltk.core.feature.group</feature>
+									<feature>org.apache.commons.io</feature>
+					            </features>
+							</injection>
+						</injections>
 					</aut>
 					<q7>
 						<licenseFile>${project.basedir}/q7.license</licenseFile>
@@ -124,11 +175,6 @@
 	                <execution>
 	                    <id>update-tests-results</id>
 	                    <phase>compile</phase>
-	                    <configuration>
-	                        <target>
-	                            <copy file="${project.basedir}/target/surefire-reports/q7-tests.junit.xml" tofile="${project.basedir}/target/surefire-reports/TEST-q7-tests.junit.xml"/>
-	                        </target>
-	                    </configuration>
 	                    <goals>
 	                        <goal>run</goal>
 	                    </goals>
