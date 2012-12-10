@@ -7,7 +7,7 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _kbLt4TioEeKKJbz7sQ1rZw
-Save-Time: 12/7/12 6:16 PM
+Save-Time: 12/10/12 2:56 PM
 Testcase-Type: ecl
 
 ------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
@@ -50,12 +50,16 @@ with [get-editor main | get-text-viewer] {
 }
 
 // Check syntaxic coloration for reserved words
-wait 2000
+wait 200
 with [get-editor main | get-editbox] {
-    get-property "styles.text" -index 11 | equals "[[My\n"
-        + "multilne\n"
-        + "string]]" | verify-true
+    get-property "styles.text" -index 11 | equals "[[My\n"| verify-true
     get-property "styles.fontStyle" -index 11 | equals normal | verify-true
     get-property "styles.foregroundColor" -index 11 | equals "#2A00FF" | verify-true
+    get-property "styles.text" -index 12 | equals "multilne\n" | verify-true
+    get-property "styles.fontStyle" -index 12 | equals normal | verify-true
+    get-property "styles.foregroundColor" -index 12 | equals "#2A00FF" | verify-true
+    get-property "styles.text" -index 13 | equals "string]]" | verify-true
+    get-property "styles.fontStyle" -index 13 | equals normal | verify-true
+    get-property "styles.foregroundColor" -index 13 | equals "#2A00FF" | verify-true
 }
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

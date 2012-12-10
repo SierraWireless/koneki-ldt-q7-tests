@@ -6,7 +6,7 @@ Element-Name: addExecEnv
 Element-Type: context
 Element-Version: 2.0
 Id: _jFN40MnAEeGLNoFQBj_CGw
-Save-Time: 9/21/12 2:50 PM
+Save-Time: 12/10/12 2:06 PM
 
 ------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
 Content-Type: text/ecl
@@ -30,12 +30,12 @@ with [get-window Preferences] {
 			get-button Cancel | click
 		} -else {
 			//set-dialog-result File "/home/gaetan/Documents/lua-5.1.zip"
-			set-dialog-result File "platform:/resource/../q7-external-files/EE/gideros.zip"
+			set-dialog-result File "platform:/resource/project1/q7-external-files/EE/gideros.zip"
 	    	get-button "Add..." | click
 	    	get-button OK | click
 	    }
 	} -else {
-		set-dialog-result File "platform:/resource/../q7-external-files/EE/gideros.zip"
+		set-dialog-result File "platform:/resource/project1/q7-external-files/EE/gideros.zip"
 		get-button "Add..." | click
 		get-button OK | click
 		

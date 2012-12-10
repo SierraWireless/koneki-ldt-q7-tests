@@ -7,7 +7,7 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _GbX7EDmAEeKGwZ-lPsgu4A
-Save-Time: 12/10/12 10:15 AM
+Save-Time: 12/10/12 2:07 PM
 Testcase-Type: ecl
 
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
@@ -21,6 +21,6 @@ get-menu "Run/Debug" | click
 get-tab-folder -index 3 | get-property activePage | equals Console | verify-true
 
 // Check "hello" is written in console
-wait 1000
+wait 2000
 get-view Console | get-editbox -type Text | get-property text | equals hello | verify-true
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
