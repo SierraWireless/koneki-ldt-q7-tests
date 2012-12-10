@@ -6,7 +6,7 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _3ZdQgDl-EeKhjM__PwLdLw
-Save-Time: 11/30/12 6:22 PM
+Save-Time: 12/7/12 11:42 AM
 Testcase-Type: ecl
 
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
@@ -14,7 +14,15 @@ Content-Type: text/ecl
 Entry-Name: .content
 
 get-preferences-menu | click
+get-window Preferences | get-tree | select "Lua/Interpreters"
+
 with [get-window Preferences] {
+    get-button "Add..." | click
+    with [get-window "Add interpreter"] {
+        get-editbox -after [get-label "Interpreter executable:"] | set-text lua
+        get-editbox -after [get-label "Interpreter name:"] | set-text lua
+        get-button OK | click
+    }
     get-tree | select "Lua/Interpreters"
     get-table | select lua
     get-button Remove | click

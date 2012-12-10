@@ -7,21 +7,21 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _Gao7QDmAEeKGwZ-lPsgu4A
-Save-Time: 11/29/12 11:17 AM
+Save-Time: 12/7/12 3:07 PM
 Testcase-Type: ecl
 
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
 Content-Type: text/ecl
 Entry-Name: .content
 
-// Run the main
+// Run main
 get-view "Script Explorer" | get-tree | select "myproject/src/main.lua" | get-menu "Debug As/1 Lua Application" | click
 
-// check console is opened
+// Check console is opened
 get-tab-folder -index 3 | get-property activePage | equals Console | verify-true
 
-// check hello is written in console
+// Check "hello" is written in console
+wait 200
 get-view Console | get-editbox -type Text | get-property text | equals hello | verify-true
-
 
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

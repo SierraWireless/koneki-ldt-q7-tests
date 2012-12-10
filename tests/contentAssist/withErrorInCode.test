@@ -7,7 +7,7 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _P2CRcM9CEeGqt76k24hgqg
-Save-Time: 11/29/12 7:35 PM
+Save-Time: 12/7/12 6:40 PM
 Testcase-Type: ecl
 
 ------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
@@ -53,6 +53,7 @@ with [get-editor main | get-text-viewer] {
     type-text mai
     key-type "M1+SPACE"
 }
+wait 2000
 get-editor main | get-editbox | get-property text | equals "local function main()\n\n"
     + "end\n"
     + "main()\n\n"
