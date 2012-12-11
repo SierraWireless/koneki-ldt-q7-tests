@@ -6,13 +6,13 @@ Element-Name: closeWelcome
 Element-Type: context
 Element-Version: 2.0
 Id: _Wur6gULhEeK3f5JY7W1KMA
-Save-Time: 12/10/12 6:30 PM
+Save-Time: 12/11/12 3:47 PM
 
 ------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
 Content-Type: text/ecl
 Entry-Name: .ecl.context
 
-wait 200
+wait 400
 if -condition [get-tab-folder | get-property activePage | equals Welcome ] -then {
 	get-view Welcome | close
 }
