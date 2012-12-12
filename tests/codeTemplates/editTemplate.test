@@ -7,7 +7,7 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _z4wuANTCEeGKjezHpf7UXA
-Save-Time: 12/10/12 2:24 PM
+Save-Time: 12/12/12 11:56 AM
 Testcase-Type: ecl
 
 ------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
@@ -34,12 +34,8 @@ Entry-Name: .description
 Content-Type: text/ecl
 Entry-Name: .content
 
-/*********************
-*	Created by: Simon Gaestel
-********************/
-
 // Open the Preferences and edit an existing template, overwritting the original one
-get-menu "Window/Preferences" | click
+get-preferences-menu | click
 with [get-window Preferences] {
     get-tree | select "Lua/Editor/Templates"
     get-table | select newTemplate
@@ -66,7 +62,7 @@ with [get-view "Script Explorer" | get-tree] {
 with [get-editor main | get-text-viewer] {
     set-caret-pos 2 1
     type-text newT
-    key-type "M1+SPACE"
+    key-type "CTRL+SPACE"
     key-type Enter
     type-text aze
     key-type Tab
@@ -86,5 +82,4 @@ get-editor main | get-editbox | get-property text | equals "local function main(
     + "end\n\n"
     + "end\n"
     + "main()" | verify-true
-
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

@@ -7,7 +7,7 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _AJfToDk7EeKKJbz7sQ1rZw
-Save-Time: 11/29/12 7:33 PM
+Save-Time: 12/12/12 11:26 AM
 Testcase-Type: ecl
 
 ------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
@@ -39,7 +39,7 @@ with [get-editor main | get-text-viewer] {
     type-text "local variable"
     key-type Enter
     type-text v
-    key-type "M1+SPACE"
+    key-type "CTRL+SPACE"
 }
 
 with [get-editor main | get-editbox] {

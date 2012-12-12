@@ -6,7 +6,7 @@ Element-Name: addExecEnv
 Element-Type: context
 Element-Version: 2.0
 Id: _jFN40MnAEeGLNoFQBj_CGw
-Save-Time: 12/10/12 2:06 PM
+Save-Time: 12/11/12 5:34 PM
 
 ------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
 Content-Type: text/ecl
@@ -20,7 +20,7 @@ Entry-Name: .ecl.context
 
 verify-error { get-menu "Window/efdgd" }
 
-get-menu "Window/Preferences" | click
+get-preferences-menu | click
 with [get-window Preferences] {
 	get-tree | select "Lua/Execution Environments"
 	if -condition [get-tree -after [get-label "Supported execution environments:"] | get-property itemCount -raw | int | not-eq 0]

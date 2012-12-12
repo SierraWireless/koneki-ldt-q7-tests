@@ -7,7 +7,7 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _QLTCADlJEeKGwZ-lPsgu4A
-Save-Time: 12/7/12 3:07 PM
+Save-Time: 12/11/12 5:48 PM
 Testcase-Type: ecl
 
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
@@ -21,83 +21,83 @@ get-view Luadoc | click
 get-view "Script Explorer" | get-tree | select "projectWithModule/src/main.lua" | click
 get-view Luadoc | get-control Browser | get-property text | contains "Note: This element has no attached documentation." | verify-true
 
-get-view "Script Explorer" | get-tree | select "projectWithModule/src/mymodule.lua"
+get-view "Script Explorer" | get-tree | select "projectWithModule/src/mymodule.lua" | click
 get-view Luadoc | get-control Browser | get-property text | contains "mymodule" | verify-true
 
 // module selection from script explorer
-get-view "Script Explorer" | get-tree | select "projectWithModule/src/main.lua"
+get-view "Script Explorer" | get-tree | select "projectWithModule/src/main.lua" | click
 get-view Luadoc | get-control Browser | get-property text | contains "Note: This element has no attached documentation." | verify-true
 
-get-view "Script Explorer" | get-tree | select "projectWithModule/src/mymodule.lua/mymodule"
+get-view "Script Explorer" | get-tree | select "projectWithModule/src/mymodule.lua/mymodule" | click
 get-view Luadoc | get-control Browser | get-property text | contains "mymodule" | verify-true
 
 // global function selection from script explorer
-get-view "Script Explorer" | get-tree | select "projectWithModule/src/main.lua"
+get-view "Script Explorer" | get-tree | select "projectWithModule/src/main.lua" | click
 get-view Luadoc | get-control Browser | get-property text | contains "Note: This element has no attached documentation." | verify-true
 
-get-view "Script Explorer" | get-tree | select "projectWithModule/src/mymodule.lua/myglobalfunction\\(\\)"
+get-view "Script Explorer" | get-tree | select "projectWithModule/src/mymodule.lua/myglobalfunction\\(\\)" | click
 get-view Luadoc | get-control Browser | get-property text | contains "myglobalfunction" | verify-true
 
 // type selection from script explorer
-get-view "Script Explorer" | get-tree | select "projectWithModule/src/main.lua"
+get-view "Script Explorer" | get-tree | select "projectWithModule/src/main.lua" | click
 get-view Luadoc | get-control Browser | get-property text | contains "Note: This element has no attached documentation." | verify-true
 
 get-view "Script Explorer" | get-tree | select "projectWithModule/src/mymodule.lua/mytype"
 get-view Luadoc | get-control Browser | get-property text | contains "mytype" | verify-true
 
 // field of type selection from script explorer
-get-view "Script Explorer" | get-tree | select "projectWithModule/src/main.lua"
+get-view "Script Explorer" | get-tree | select "projectWithModule/src/main.lua" | click
 get-view Luadoc | get-control Browser | get-property text | contains "Note: This element has no attached documentation." | verify-true
 
-get-view "Script Explorer" | get-tree | select "projectWithModule/src/mymodule.lua/mytype/myfield"
+get-view "Script Explorer" | get-tree | select "projectWithModule/src/mymodule.lua/mytype/myfield" | click
 get-view Luadoc | get-control Browser | get-property text | contains "myfield" | verify-true
 
 // function of type selection from script explorer
-get-view "Script Explorer" | get-tree | select "projectWithModule/src/main.lua"
+get-view "Script Explorer" | get-tree | select "projectWithModule/src/main.lua" | click
 get-view Luadoc | get-control Browser | get-property text | contains "Note: This element has no attached documentation." | verify-true
 
-get-view "Script Explorer" | get-tree | select "projectWithModule/src/mymodule.lua/mytype/myfunction\\(\\)"
+get-view "Script Explorer" | get-tree | select "projectWithModule/src/mymodule.lua/mytype/myfunction\\(\\)" | click
 get-view Luadoc | get-control Browser | get-property text | contains "myfunction" | verify-true
 
 // module selection from outline
-get-view "Script Explorer" | get-tree | select "projectWithModule/src/main.lua"
+get-view "Script Explorer" | get-tree | select "projectWithModule/src/main.lua" | click
 get-view Luadoc | get-control Browser | get-property text | contains "Note: This element has no attached documentation." | verify-true
 
-get-view Outline | get-tree | select mymodule
+get-view Outline | get-tree | select mymodule | click
 get-view Luadoc | get-control Browser | get-property text | contains "mymodule" | verify-true
 
 // module selection from outline
-get-view "Script Explorer" | get-tree | select "projectWithModule/src/main.lua"
+get-view "Script Explorer" | get-tree | select "projectWithModule/src/main.lua" | click
 get-view Luadoc | get-control Browser | get-property text | contains "Note: This element has no attached documentation." | verify-true
 
-get-view Outline | get-tree | select mytype
+get-view Outline | get-tree | select mytype | click
 get-view Luadoc | get-control Browser | get-property text | contains "mytype" | verify-true
 
 // field of type selection from outline
-get-view "Script Explorer" | get-tree | select "projectWithModule/src/main.lua"
+get-view "Script Explorer" | get-tree | select "projectWithModule/src/main.lua" | click
 get-view Luadoc | get-control Browser | get-property text | contains "Note: This element has no attached documentation." | verify-true
 
-get-view Outline | get-tree | select "mytype/myfield"
+get-view Outline | get-tree | select "mytype/myfield" | click
 get-view Luadoc | get-control Browser | get-property text | contains "myfield" | verify-true
 
 // function of type selection from outline
-get-view "Script Explorer" | get-tree | select "projectWithModule/src/main.lua"
+get-view "Script Explorer" | get-tree | select "projectWithModule/src/main.lua" | click
 get-view Luadoc | get-control Browser | get-property text | contains "Note: This element has no attached documentation." | verify-true
 
-get-view Outline | get-tree | select "mytype/myfunction\\(\\)"
+get-view Outline | get-tree | select "mytype/myfunction\\(\\)" | click
 get-view Luadoc | get-control Browser | get-property text | contains "myfunction" | verify-true
 
 // global function selection from outline
-get-view "Script Explorer" | get-tree | select "projectWithModule/src/main.lua"
+get-view "Script Explorer" | get-tree | select "projectWithModule/src/main.lua" | click
 get-view Luadoc | get-control Browser | get-property text | contains "Note: This element has no attached documentation." | verify-true
 
-get-view Outline | get-tree | select "myglobalfunction\\(\\)"
+get-view Outline | get-tree | select "myglobalfunction\\(\\)" | click
 get-view Luadoc | get-control Browser | get-property text | contains "myglobalfunction" | verify-true
 
 // global field selection from outline
-get-view "Script Explorer" | get-tree | select "projectWithModule/src/main.lua"
+get-view "Script Explorer" | get-tree | select "projectWithModule/src/main.lua" | click
 get-view Luadoc | get-control Browser | get-property text | contains "Note: This element has no attached documentation." | verify-true
 
-get-view Outline | get-tree | select "myglobalvar"
+get-view Outline | get-tree | select "myglobalvar" | click
 get-view Luadoc | get-control Browser | get-property text | contains "myglobalvar" | verify-true
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

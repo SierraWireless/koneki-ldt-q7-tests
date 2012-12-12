@@ -7,7 +7,7 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _lJMcsDijEeKGwZ-lPsgu4A
-Save-Time: 11/27/12 6:35 PM
+Save-Time: 12/11/12 5:45 PM
 Testcase-Type: ecl
 
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
@@ -16,7 +16,7 @@ Entry-Name: .content
 
 
 //go to preference page
-get-menu "Window/Preferences" | click
+get-preferences-menu | click
 get-window Preferences | get-tree | select "Lua/Execution Environments"
 
 // Add execution environment
@@ -27,7 +27,7 @@ with [get-window Preferences] {
 }
 
 // Check EE is added
-get-menu "Window/Preferences" | click
+get-preferences-menu | click
 get-window Preferences | get-tree | select "Lua/Execution Environments"
 with [get-window Preferences | get-tree -after [get-label "Supported execution environments:"]] {
     get-property itemCount | equals 2 | verify-true
@@ -52,12 +52,10 @@ with [get-window Preferences] {
     get-button Remove | click
 }
 
-
 // check EE is removed
 get-window Preferences | get-tree -after [get-label "Supported execution environments:"] | get-property itemCount 
     | equals 1 | verify-true
-    
-    
+
 // close preference page
 get-window Preferences | get-button OK | click
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
