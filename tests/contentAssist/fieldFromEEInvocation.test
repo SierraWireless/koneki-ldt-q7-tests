@@ -1,0 +1,40 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _OtCUkDfmEeKGwZ-lPsgu4A,_XgmhADlcEeKGwZ-lPsgu4A
+Element-Name: fieldFromEEInvocation
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _1K1QgUUpEeKPv_pQ8tX9tw
+Save-Time: 12/13/12 3:18 PM
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+// Open main.lua file
+with [get-view "Script Explorer" | get-tree] {
+    select "myproject/src/main.lua" | double-click
+}
+
+// Open the content-assist after a few letters typed
+with [get-editor main | get-text-viewer] {
+    set-caret-pos 2 1
+    type-text "local io = require 'io'\nlocal f = io.open('/tmp/f', 'w'"
+    key-type Tab
+    key-type Enter
+    type-text "f:"
+    key-type "CTRL+SPACE"
+}
+
+get-window -from "CompletionProposalPopup.createProposalSelector()" | get-table | select "close\\(\\) - io" | click 
+    -default
+get-editor main | get-editbox | get-property text | equals "local function main()\n"
+    + "local io = require 'io'\n"
+    + "local f = io.open('/tmp/f', 'w')\n"
+    + "f:close()"
+    + "end\n"
+    + "main()" | verify-true
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
