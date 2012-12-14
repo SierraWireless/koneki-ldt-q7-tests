@@ -7,7 +7,7 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _1K1QgUUpEeKPv_pQ8tX9tw
-Save-Time: 12/13/12 3:18 PM
+Save-Time: 12/14/12 2:56 PM
 Testcase-Type: ecl
 
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
@@ -27,14 +27,16 @@ with [get-editor main | get-text-viewer] {
     key-type Enter
     type-text "f:"
     key-type "CTRL+SPACE"
+    // Select close method like coders do
+    type-text c
+    key-type Enter
 }
 
-get-window -from "CompletionProposalPopup.createProposalSelector()" | get-table | select "close\\(\\) - io" | click 
-    -default
+// Check result
 get-editor main | get-editbox | get-property text | equals "local function main()\n"
     + "local io = require 'io'\n"
     + "local f = io.open('/tmp/f', 'w')\n"
-    + "f:close()"
+    + "f:close()\n"
     + "end\n"
     + "main()" | verify-true
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
